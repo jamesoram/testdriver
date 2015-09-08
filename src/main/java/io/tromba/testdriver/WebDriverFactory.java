@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 /**
- * Created by jao on 08/09/15.
+ * Factory for WebDrivers.
  */
 public class WebDriverFactory {
 

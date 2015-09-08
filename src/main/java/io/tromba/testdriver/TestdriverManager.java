@@ -7,7 +7,7 @@ import org.testng.IInvokedMethod;
 import java.util.Map;
 
 /**
- * Created by jao on 08/09/15.
+ * Manager class for WebDrivers.
  */
 public class TestdriverManager {
 
