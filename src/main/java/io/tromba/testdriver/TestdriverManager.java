@@ -11,9 +11,9 @@ import java.util.Map;
  */
 public class TestdriverManager {
 
-    private Map<IInvokedMethod, WebDriver> drivers;
+    private static Map<IInvokedMethod, WebDriver> drivers;
 
-    public void setDriver(IInvokedMethod method, WebDriver driver) {
+    public synchronized void setDriver(IInvokedMethod method, WebDriver driver) {
         drivers.put(method, driver);
     }
 
@@ -25,5 +25,9 @@ public class TestdriverManager {
         }
 
         return driver;
+    }
+
+    public synchronized void destroyDriver(IInvokedMethod method) {
+        drivers.remove(method);
     }
 }
