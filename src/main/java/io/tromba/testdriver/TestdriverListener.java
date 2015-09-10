@@ -5,6 +5,8 @@ import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * TestNG listener to create and destroy drivers before and after the tests are fun.
  */
@@ -15,6 +17,7 @@ public class TestdriverListener implements IInvokedMethodListener {
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
         WebDriver driver = new WebDriverFactory().createInstance();
         testdriverManager.setDriver(method, driver);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
