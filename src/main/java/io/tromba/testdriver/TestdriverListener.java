@@ -17,7 +17,7 @@ public class TestdriverListener implements IInvokedMethodListener {
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
             WebDriver driver = new WebDriverFactory().createInstance();
-            testdriverManager.setDriver(method, driver);
+            testdriverManager.setDriver(method.getTestMethod().getMethodName(), driver);
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         }
     }
@@ -25,13 +25,13 @@ public class TestdriverListener implements IInvokedMethodListener {
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
             try {
-                WebDriver driver = testdriverManager.getDriver(method);
+                WebDriver driver = testdriverManager.getDriver(method.getTestMethod().getMethodName());
                 driver.close();
                 driver.quit();
             } catch (Exception e) {
                 throw new RuntimeException("An error occurred: " + e.getMessage());
             }
-            testdriverManager.destroyDriver(method);
+            testdriverManager.destroyDriver(method.getTestMethod().getMethodName());
         }
     }
 }
