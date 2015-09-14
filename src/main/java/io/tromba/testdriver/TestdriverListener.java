@@ -16,7 +16,7 @@ public class TestdriverListener implements IInvokedMethodListener {
 
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
-            WebDriver driver = new WebDriverFactory().createInstance();
+            WebDriver driver = WebDriverFactory.createInstance();
             testdriverManager.setDriver(method.getTestMethod().getMethodName(), driver);
             driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         }

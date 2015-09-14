@@ -8,7 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
  */
 public class WebDriverFactory {
 
-    public WebDriver createInstance() {
+    public static WebDriver createInstance() {
         return new ChromeDriver();
     }
 }

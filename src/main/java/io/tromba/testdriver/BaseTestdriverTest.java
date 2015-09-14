@@ -10,7 +10,11 @@ import java.util.Set;
  */
 public class BaseTestdriverTest {
 
-    private TestdriverManager testdriverManager = new TestdriverManager();
+    private TestdriverManager testdriverManager;
+
+    public BaseTestdriverTest(TestdriverManager testdriverManager) {
+        this.testdriverManager = testdriverManager;
+    }
 
     public WebDriver driver() {
         Set<String> methods = testdriverManager.getTestMethods();
