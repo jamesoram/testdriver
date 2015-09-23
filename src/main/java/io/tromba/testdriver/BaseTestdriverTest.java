@@ -2,12 +2,14 @@ package io.tromba.testdriver;
 
 import io.tromba.testdriver.exceptions.DriverNotFoundException;
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Listeners;
 
 import java.util.Set;
 
 /**
  * Base test from which all testdriver tests will inherit.
  */
+@Listeners({ io.tromba.testdriver.TestdriverListener.class })
 public class BaseTestdriverTest {
 
     private TestdriverManager testdriverManager;
