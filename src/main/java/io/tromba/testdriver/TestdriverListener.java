@@ -8,7 +8,7 @@ import org.testng.ITestResult;
 import java.util.concurrent.TimeUnit;
 
 /**
- * TestNG listener to create and destroy drivers before and after the tests are fun.
+ * TestNG listener to create and destroy drivers before and after the tests are run.
  */
 public class TestdriverListener implements IInvokedMethodListener {
 
