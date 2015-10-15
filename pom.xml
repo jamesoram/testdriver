@@ -6,18 +6,18 @@
 
     <groupId>io.tromba</groupId>
     <artifactId>testdriver</artifactId>
-    <version>0.1.1-SNAPSHOT</version>
+    <version>0.1.2-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>2.47.2</version>
+            <version>2.48.2</version>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-            <version>6.9.6</version>
+            <version>6.9.8</version>
         </dependency>
     </dependencies>
 
