@@ -6,7 +6,7 @@ import org.testng.annotations.Listeners;
 /**
  * Base test from which all testdriver tests will inherit.
  */
-@Listeners({ io.tromba.testdriver.TestdriverListener.class })
+@Listeners({ TestdriverListener.class })
 public class BaseTestdriverTest {
 
     private TestdriverManager testdriverManager;
