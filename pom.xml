@@ -6,7 +6,7 @@
 
     <groupId>io.tromba</groupId>
     <artifactId>testdriver</artifactId>
-    <version>0.1.4-SNAPSHOT</version>
+    <version>0.1.6-SNAPSHOT</version>
 
     <dependencies>
         <dependency>
