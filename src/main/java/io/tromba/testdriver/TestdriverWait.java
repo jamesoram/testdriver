@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
- * Created by jao on 25/09/15.
+ * Class for wait conditions.
  */
 public class TestdriverWait extends WebDriverWait {
 
@@ -44,5 +44,15 @@ public class TestdriverWait extends WebDriverWait {
                 }
             }
         };
+    }
+
+    // this should only be used for debugging purposes
+    @Deprecated
+    public void sleep(int timeInMillis) {
+        try {
+            Thread.sleep(timeInMillis);
+        } catch (InterruptedException e) {
+            // do nothing
+        }
     }
 }
