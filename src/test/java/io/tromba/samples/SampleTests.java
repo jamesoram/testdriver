@@ -1,7 +1,7 @@
 package io.tromba.samples;
 
-import io.tromba.testdriver.BaseTestdriverTest;
-import io.tromba.testdriver.TestdriverManager;
+import io.tromba.testdriver.core.BaseTestdriverTest;
+import io.tromba.testdriver.core.TestdriverManager;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;

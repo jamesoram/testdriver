@@ -1,4 +1,4 @@
-package io.tromba.testdriver;
+package io.tromba.testdriver.core;
 
 import io.tromba.testdriver.exceptions.DriverNotFoundException;
 import org.openqa.selenium.WebDriver;

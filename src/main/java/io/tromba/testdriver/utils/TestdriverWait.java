@@ -1,4 +1,4 @@
-package io.tromba.testdriver;
+package io.tromba.testdriver.utils;
 
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;

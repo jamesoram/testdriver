@@ -1,4 +1,4 @@
-package io.tromba.testdriver;
+package io.tromba.testdriver.core;
 
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
@@ -13,14 +13,14 @@ import java.net.URL;
  */
 public class WebDriverFactory {
 
-    private static final String url = "http://localhost:4444/wd/hub";
+    private static final String URL = "http://localhost:4444/wd/hub";
 
     public static WebDriver createInstance() {
         Capabilities capabilities = DesiredCapabilities.chrome();
         try {
-            return new RemoteWebDriver(new URL(url), capabilities);
+            return new RemoteWebDriver(new URL(URL), capabilities);
         } catch (MalformedURLException ex) {
-            throw new RuntimeException("Malformed Remote WebDriver URL: " + url + "\n" + ex.getMessage());
+            throw new RuntimeException("Malformed Remote WebDriver URL: " + URL + "\n" + ex.getMessage());
         }
     }
 }

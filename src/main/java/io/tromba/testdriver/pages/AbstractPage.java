@@ -1,5 +1,6 @@
-package io.tromba.testdriver;
+package io.tromba.testdriver.pages;
 
+import io.tromba.testdriver.utils.TestdriverWait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,13 +13,14 @@ import java.util.List;
  */
 public class AbstractPage {
 
+    private static final int MAX_WAIT = 30;
     protected WebDriver driver;
     protected TestdriverWait wait;
 
     public AbstractPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-        wait = new TestdriverWait(driver, 30);
+        wait = new TestdriverWait(driver, MAX_WAIT);
     }
 
     protected WebElement findByLinkText(String text) {
