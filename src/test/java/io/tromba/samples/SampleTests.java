@@ -28,6 +28,12 @@ public class SampleTests extends BaseTestdriverTest {
         Assert.assertTrue(driver().getTitle().contains("Google"));
     }
 
+    @Test
+    public void testRetries() {
+        driver().get("https://google.com");
+        driver().findElement(By.id("something"));
+    }
+
     @DataProvider(name = "queries", parallel = true)
     public Object[][] provideQueries() {
         return new Object[][] { { "Selenium" }, { "webdriver" }, { "BDD" }, { "wireshark" }, { "charles proxy" },

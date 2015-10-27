@@ -12,7 +12,7 @@ import java.lang.reflect.Method;
  */
 public class TestdriverAnnotationTransformer implements IAnnotationTransformer {
 
-    private static final int TIMEOUT = 300000;
+    private static final int TIMEOUT = 600000;
 
     public void transform(ITestAnnotation iTestAnnotation, Class aClass, Constructor constructor, Method method) {
         iTestAnnotation.setRetryAnalyzer(TestdriverRetry.class);
