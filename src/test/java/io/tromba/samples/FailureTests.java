@@ -11,10 +11,5 @@ public class FailureTests {
     @Test(timeOut = 1000)
     public void testFailure() {
         Assert.fail();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            // do nothing
-        }
     }
 }

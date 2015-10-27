@@ -25,7 +25,7 @@ public class ListenerTests {
         tng.addListener(tla);
         tng.run();
 
-        List<ITestResult> results = tla.getFailedTests();
+        List<ITestResult> results = tla.getSkippedTests();
         Assert.assertEquals(results.size(), 3);
         Assert.assertEquals(tla.getPassedTests().size(), 0);
     }
