@@ -28,7 +28,9 @@ public class TestdriverListener implements IInvokedMethodListener {
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
             try {
-                WebDriver driver = testdriverManager.getDriver(method.getTestMethod().getMethodName());
+                String key = method.getTestMethod().getMethodName();
+                WebDriver driver = testdriverManager.getDriver(key);
+                testdriverManager.destroyDriver(key);
                 driver.close();
                 driver.quit();
             } catch (Exception e) {
