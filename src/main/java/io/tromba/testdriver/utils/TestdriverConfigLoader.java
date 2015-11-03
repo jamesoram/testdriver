@@ -6,17 +6,17 @@ import com.typesafe.config.ConfigFactory;
 /**
  * Class for loading and holding the framework configuration.
  */
-public class TestdriverConfig {
+public class TestdriverConfigLoader {
 
     private String file;
     private Config config;
 
-    public TestdriverConfig(String file) {
+    public TestdriverConfigLoader(String file) {
         this.file = file;
         this.config = ConfigFactory.load(file);
     }
 
-    public TestdriverConfig() {
+    public TestdriverConfigLoader() {
         this("testdriver.conf");
     }
 
