@@ -1,7 +1,7 @@
 Testdriver: minimal test framework for Selenium WebDriver.
 
 TODO:
-* Logging
 * URL / Environment handling
+* Logging
 * Documentation
 * More extensive tests
