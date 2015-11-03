@@ -28,7 +28,7 @@ public class SampleTests extends BaseTestdriverTest {
         Assert.assertTrue(driver().getTitle().contains("Google"));
     }
 
-    @Test
+    @Test(enabled = false)
     public void testRetries() {
         driver().get("https://google.com");
         driver().findElement(By.id("something"));
