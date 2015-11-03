@@ -1,5 +1,6 @@
 package io.tromba.testdriver.core.listeners;
 
+import io.tromba.testdriver.utils.TestdriverConfig;
 import io.tromba.testdriver.utils.TestdriverRetry;
 import org.testng.IAnnotationTransformer;
 import org.testng.annotations.ITestAnnotation;
@@ -12,7 +13,7 @@ import java.lang.reflect.Method;
  */
 public class TestdriverAnnotationTransformer implements IAnnotationTransformer {
 
-    private static final int TIMEOUT = 600000;
+    private static final int TIMEOUT = Integer.parseInt(TestdriverConfig.getInstance().getGlobalTimeoutInMillis());
 
     public void transform(ITestAnnotation iTestAnnotation, Class aClass, Constructor constructor, Method method) {
         iTestAnnotation.setRetryAnalyzer(TestdriverRetry.class);

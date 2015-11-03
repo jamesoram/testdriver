@@ -1,5 +1,6 @@
 package io.tromba.testdriver.pages;
 
+import io.tromba.testdriver.utils.TestdriverConfig;
 import io.tromba.testdriver.utils.TestdriverWait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +14,7 @@ import java.util.List;
  */
 public class AbstractPage {
 
-    private static final int MAX_WAIT = 30;
+    private static final int MAX_WAIT = Integer.parseInt(TestdriverConfig.getInstance().getMaxWaitInSeconds());
     protected WebDriver driver;
     protected TestdriverWait wait;
 

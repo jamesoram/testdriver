@@ -8,7 +8,7 @@ import org.testng.ITestResult;
  */
 public class TestdriverRetry implements IRetryAnalyzer {
 
-    private static final int MAX_RETRIES = 3;
+    private static final int MAX_RETRIES = Integer.parseInt(TestdriverConfig.getInstance().getMaxRetries());
     private ThreadLocal<Integer> retries = new ThreadLocal<Integer>() {
         @Override
         public synchronized Integer initialValue() {

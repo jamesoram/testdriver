@@ -13,7 +13,7 @@ public class TestdriverconfigTests {
     @Test
     public void testConfigIsLoaded() {
         TestdriverConfigLoader config = new TestdriverConfigLoader();
-        Assert.assertEquals(config.get("grid"), "http://test:31337");
+        Assert.assertEquals(config.get("grid"), "http://localhost:4444/wd/hub");
     }
 
     @Test(expectedExceptions = ConfigException.class)

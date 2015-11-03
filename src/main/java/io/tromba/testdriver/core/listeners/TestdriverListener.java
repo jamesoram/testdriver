@@ -2,6 +2,7 @@ package io.tromba.testdriver.core.listeners;
 
 import io.tromba.testdriver.core.TestdriverManager;
 import io.tromba.testdriver.core.WebDriverFactory;
+import io.tromba.testdriver.utils.TestdriverConfig;
 import org.openqa.selenium.WebDriver;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
@@ -14,7 +15,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class TestdriverListener implements IInvokedMethodListener {
 
-    private static final int MAX_WAIT = 30;
+    private static final int MAX_WAIT = Integer.valueOf(TestdriverConfig.getInstance().getMaxImplicitWaitInSeconds());
     private TestdriverManager testdriverManager = new TestdriverManager();
 
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {

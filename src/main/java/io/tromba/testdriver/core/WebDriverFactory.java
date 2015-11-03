@@ -1,5 +1,6 @@
 package io.tromba.testdriver.core;
 
+import io.tromba.testdriver.utils.TestdriverConfig;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -13,7 +14,7 @@ import java.net.URL;
  */
 public class WebDriverFactory {
 
-    private static final String URL = "http://localhost:4444/wd/hub";
+    private static final String URL = TestdriverConfig.getInstance().getGrid();
 
     public static WebDriver createInstance() {
         Capabilities capabilities = DesiredCapabilities.chrome();
