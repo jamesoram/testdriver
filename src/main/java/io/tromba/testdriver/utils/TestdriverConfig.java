@@ -27,8 +27,8 @@ public class TestdriverConfig {
     }
 
     // ugly singleton for mvp
-    public TestdriverConfig getInstance() {
-        synchronized (this) {
+    public static TestdriverConfig getInstance() {
+        synchronized (TestdriverConfig.class) {
             if (null == testdriverConfig) {
                 testdriverConfig = new TestdriverConfig();
             }
