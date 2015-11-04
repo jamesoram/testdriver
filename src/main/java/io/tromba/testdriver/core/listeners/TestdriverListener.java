@@ -18,6 +18,11 @@ public class TestdriverListener implements IInvokedMethodListener {
     private static final int MAX_WAIT = Integer.valueOf(TestdriverConfig.getInstance().getMaxImplicitWaitInSeconds());
     private TestdriverManager testdriverManager = new TestdriverManager();
 
+    /**
+     * Runs before each test invocation. Sets up the driver for each test.
+     * @param method the method which is about to run.
+     * @param testResult the result of the test.
+     */
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
             WebDriver driver = WebDriverFactory.createInstance();
@@ -26,6 +31,11 @@ public class TestdriverListener implements IInvokedMethodListener {
         }
     }
 
+    /**
+     * Runs after each test invocation. Destroys and closes the driver.
+     * @param method the method that has just run.
+     * @param testResult the test result.
+     */
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
             try {

@@ -16,6 +16,11 @@ public class TestdriverRetry implements IRetryAnalyzer {
         }
     };
 
+    /**
+     * If the retry count hasn't been reached, try again.
+     * @param result the test result.
+     * @return true if we retry, otherwise false.
+     */
     public boolean retry(ITestResult result) {
         if (retries.get() < MAX_RETRIES) {
             retries.set(retries.get() + 1);

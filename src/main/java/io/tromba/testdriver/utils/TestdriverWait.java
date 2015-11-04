@@ -12,14 +12,27 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class TestdriverWait extends WebDriverWait {
 
+    /**
+     * Constructor.
+     * @param driver the WebDriver instance to use.
+     * @param timeOutInSeconds Maximum amount to wait.
+     */
     public TestdriverWait(WebDriver driver, long timeOutInSeconds) {
         super(driver, timeOutInSeconds);
     }
 
+    /**
+     * Wait for an element to be visible.
+     * @param element the element to wait for.
+     */
     public void forElementVisible(WebElement element) {
         until(ExpectedConditions.visibilityOf(element));
     }
 
+    /**
+     * Wait for an element to not be stale.
+     * @param element the element to wait for.
+     */
     public void forElementNotStale(final WebElement element) {
         until(new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver webDriver) {
@@ -46,7 +59,10 @@ public class TestdriverWait extends WebDriverWait {
         };
     }
 
-    // this should only be used for debugging purposes
+    /**
+     * This should only be used for debugging purposes.
+     * @param timeInMillis the time to wait.
+     */
     @Deprecated
     public void sleep(int timeInMillis) {
         try {

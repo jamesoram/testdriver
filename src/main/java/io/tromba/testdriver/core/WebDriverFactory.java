@@ -16,6 +16,10 @@ public class WebDriverFactory {
 
     private static final String URL = TestdriverConfig.getInstance().getGrid();
 
+    /**
+     * Create a new WebDriver by connecting to the Selenium Grid.
+     * @return the newly-created driver.
+     */
     public static WebDriver createInstance() {
         Capabilities capabilities = DesiredCapabilities.chrome();
         try {

@@ -20,6 +20,11 @@ public class TestdriverConfigLoader {
         this("testdriver.conf");
     }
 
+    /**
+     * Return the value for a given key.
+     * @param key the key for which to find the value.
+     * @return the value associated with the key.
+     */
     public String get(String key) {
         return config.getString(key);
     }

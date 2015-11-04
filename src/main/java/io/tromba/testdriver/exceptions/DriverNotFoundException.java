@@ -1,7 +1,7 @@
 package io.tromba.testdriver.exceptions;
 
 /**
- * Created by jao on 08/09/15.
+ * Exception for when a driver is not found.
  */
 public class DriverNotFoundException extends RuntimeException {
 }

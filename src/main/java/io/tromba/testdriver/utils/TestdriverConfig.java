@@ -26,7 +26,10 @@ public class TestdriverConfig {
         maxRetries = configLoader.get("maxRetries");
     }
 
-    // ugly singleton for mvp
+    /**
+     * Ugly singleton for config.
+     * @return the config instance.
+     */
     public static TestdriverConfig getInstance() {
         synchronized (TestdriverConfig.class) {
             if (null == testdriverConfig) {

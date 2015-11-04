@@ -17,6 +17,10 @@ public class BaseTestdriverTest {
         this.testdriverManager = testdriverManager;
     }
 
+    /**
+     * Get the driver that belongs to the calling test.
+     * @return the correct webdriver.
+     */
     public WebDriver driver() {
         return testdriverManager.driver();
     }

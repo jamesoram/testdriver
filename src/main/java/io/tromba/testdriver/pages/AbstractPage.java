@@ -18,6 +18,10 @@ public class AbstractPage {
     protected WebDriver driver;
     protected TestdriverWait wait;
 
+    /**
+     * Sets up the basics for all pages.
+     * @param driver the driver to use.
+     */
     public AbstractPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
