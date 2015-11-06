@@ -24,14 +24,14 @@ public class WebDriverFactory {
      */
     public static WebDriver createInstance() {
         Capabilities capabilities = null;
-        if (browser.equals("chrome")) {
+        if (browser.equals("phantomjs")) {
+            capabilities = DesiredCapabilities.phantomjs();
+        } else if (browser.equals("chrome")) {
             capabilities = DesiredCapabilities.chrome();
-        } else if (browser.equals("firefox")) {
-            capabilities = DesiredCapabilities.firefox();
         } else if (browser.equals("ie")) {
             capabilities = DesiredCapabilities.internetExplorer();
         } else {
-            capabilities = DesiredCapabilities.phantomjs();
+            capabilities = DesiredCapabilities.firefox();
         }
 
         try {
