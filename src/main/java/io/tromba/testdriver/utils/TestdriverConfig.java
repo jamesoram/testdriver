@@ -17,6 +17,8 @@ public class TestdriverConfig {
 
     private static String maxRetries;
 
+    private static String browser;
+
     private TestdriverConfig() {
         TestdriverConfigLoader configLoader = new TestdriverConfigLoader();
         grid = configLoader.get("grid");
@@ -24,6 +26,7 @@ public class TestdriverConfig {
         maxImplicitWaitInSeconds = configLoader.get("maxImplicitWaitInSeconds");
         globalTimeoutInMillis = configLoader.get("globalTimeoutInMillis");
         maxRetries = configLoader.get("maxRetries");
+        browser = configLoader.get("browser");
     }
 
     /**
@@ -41,6 +44,10 @@ public class TestdriverConfig {
 
     public static String getGrid() {
         return grid;
+    }
+
+    public static String getBrowser() {
+        return browser;
     }
 
     public static String getMaxWaitInSeconds() {
