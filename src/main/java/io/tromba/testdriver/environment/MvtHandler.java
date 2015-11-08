@@ -7,5 +7,5 @@ import org.testng.ITestNGMethod;
  */
 public interface MvtHandler {
 
-    public String getMvts(ITestNGMethod method);
+    String getMvts(ITestNGMethod method);
 }
