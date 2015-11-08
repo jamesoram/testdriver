@@ -1,5 +1,6 @@
 package io.tromba.testdriver;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
@@ -13,6 +14,8 @@ public class EnvironmentTests {
         final String initialUrl  = "http://tromba%ENV";
 
         // do stuff
+        String foundUrl = "";
+        Assert.assertEquals(foundUrl, expectedUrl);
     }
 
     @Test
@@ -21,17 +24,25 @@ public class EnvironmentTests {
         final String initialUrl  = "http://tromba%ENV";
 
         // magic here
+        String foundUrl = "";
+        Assert.assertEquals(foundUrl, expectedUrl);
     }
 
     @Test
     public void testProductionStandard() {
         final String initialUrl  = "http://tromba%ENV.io";
         final String expectedUrl = "http://tromba.io";
+
+        String foundUrl = "";
+        Assert.assertEquals(foundUrl, expectedUrl);
     }
 
     @Test
     public void testStagingStandard() {
         final String initialUrl  = "http://tromba%ENV.io";
         final String expectedUrl = "http://tromba.staging.io";
+
+        String foundUrl = "";
+        Assert.assertEquals(foundUrl, expectedUrl);
     }
 }
