@@ -4,7 +4,6 @@ import io.tromba.testdriver.core.listeners.TestdriverAnnotationTransformer;
 import io.tromba.testdriver.core.listeners.TestdriverListener;
 import io.tromba.testdriver.environment.EnvironmentHandler;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 
 /**
@@ -22,13 +21,6 @@ public class BaseTestdriverTest {
 
     public BaseTestdriverTest(EnvironmentHandler environmentHandler) {
         this.environmentHandler = environmentHandler;
-    }
-
-    @BeforeTest
-    public void getStartUrl() {
-        if (null != environmentHandler) {
-            driver().get(environmentHandler.getStartUrl());
-        }
     }
 
     /**

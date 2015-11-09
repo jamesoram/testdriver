@@ -1,7 +1,7 @@
 package io.tromba.testdriver.environment;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Simple environment handler based on URLs.
@@ -10,10 +10,10 @@ public class UrlEnvironmentHandler implements EnvironmentHandler {
 
     public static final String MAGIC_STRING = "%ENV";
 
-    private Map<String, String> environments;
+    private List<String> urls;
 
-    public UrlEnvironmentHandler(Map<String, String> environments) {
-        setEnvironments(environments);
+    public UrlEnvironmentHandler(List<String> urls) {
+        setEnvironments(urls);
     }
 
     public UrlEnvironmentHandler(String environmentFileName) {
@@ -21,14 +21,19 @@ public class UrlEnvironmentHandler implements EnvironmentHandler {
     }
 
     public UrlEnvironmentHandler() {
-        environments = new HashMap<String, String>();
+        urls = new ArrayList<String>();
     }
 
-    public void setEnvironments(Map<String, String> environments) {
-        this.environments = environments;
+    public void setEnvironments(List<String> urls) {
+        this.urls = urls;
     }
 
-    public String getStartUrl(String environment) {
-        return environments.get(environment);
+    public List<String> getStartUrls(String environment) {
+        List<String> formattedUrls = new ArrayList<String>();
+
+        for (String url : urls) {
+            formattedUrls.add(url.replace(MAGIC_STRING, environment));
+        }
+        return formattedUrls;
     }
 }
