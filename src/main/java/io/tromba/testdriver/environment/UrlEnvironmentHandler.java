@@ -17,7 +17,7 @@ public class UrlEnvironmentHandler implements EnvironmentHandler {
     }
 
     public UrlEnvironmentHandler(String environmentFileName) {
-        // load envs from file
+        throw new RuntimeException("not implemented");
     }
 
     public UrlEnvironmentHandler() {
