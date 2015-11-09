@@ -5,7 +5,5 @@ package io.tromba.testdriver.environment;
  */
 public interface EnvironmentHandler {
 
-    String getStartUrl();
-
-    void loadEnvironment();
+    String getStartUrl(String environment);
 }
