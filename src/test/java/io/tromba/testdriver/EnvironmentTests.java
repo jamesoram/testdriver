@@ -6,7 +6,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Tests for the environment handlers.
@@ -20,8 +22,10 @@ public class EnvironmentTests {
 
         List<String> urlList = new ArrayList<String>();
         urlList.add(initialUrl);
-        EnvironmentHandler environmentHandler = new UrlEnvironmentHandler(urlList);
-        String foundUrl = environmentHandler.getStartUrls(".io").get(0);
+        Map<String, String> envDns = new HashMap<String, String>();
+        envDns.put("prod", ".io");
+        EnvironmentHandler environmentHandler = new UrlEnvironmentHandler(urlList, envDns);
+        String foundUrl = environmentHandler.getStartUrls("prod").get(0);
         Assert.assertEquals(foundUrl, expectedUrl);
     }
 
@@ -30,11 +34,12 @@ public class EnvironmentTests {
         final String expectedUrl = "http://tromba-staging.int";
         final String initialUrl  = "http://tromba" + UrlEnvironmentHandler.MAGIC_STRING;
 
+        Map<String, String> envDns = new HashMap<String, String>();
+        envDns.put("staging", "-staging.int");
         List<String> urlList = new ArrayList<String>();
         urlList.add(initialUrl);
-        EnvironmentHandler environmentHandler = new UrlEnvironmentHandler(urlList);
-
-        String foundUrl = environmentHandler.getStartUrls("-staging.int").get(0);
+        EnvironmentHandler environmentHandler = new UrlEnvironmentHandler(urlList, envDns);
+        String foundUrl = environmentHandler.getStartUrls("staging").get(0);
         Assert.assertEquals(foundUrl, expectedUrl);
     }
 
@@ -43,10 +48,11 @@ public class EnvironmentTests {
         final String initialUrl  = "http://tromba" + UrlEnvironmentHandler.MAGIC_STRING + ".io";
         final String expectedUrl = "http://tromba.io";
 
+        Map<String, String> envDns = new HashMap<String, String>();
+        envDns.put("prod", "");
         List<String> urlList = new ArrayList<String>();
         urlList.add(initialUrl);
-        EnvironmentHandler environmentHandler = new UrlEnvironmentHandler(urlList);
-
+        EnvironmentHandler environmentHandler = new UrlEnvironmentHandler(urlList, envDns);
         String foundUrl = environmentHandler.getStartUrls("").get(0);
         Assert.assertEquals(foundUrl, expectedUrl);
     }
@@ -56,11 +62,12 @@ public class EnvironmentTests {
         final String initialUrl  = "http://tromba"  + UrlEnvironmentHandler.MAGIC_STRING + ".io";
         final String expectedUrl = "http://tromba.staging.io";
 
+        Map<String, String> envDns = new HashMap<String, String>();
+        envDns.put("staging", ".staging");
         List<String> urlList = new ArrayList<String>();
         urlList.add(initialUrl);
-        EnvironmentHandler environmentHandler = new UrlEnvironmentHandler(urlList);
-
-        String foundUrl = environmentHandler.getStartUrls(".staging").get(0);
+        EnvironmentHandler environmentHandler = new UrlEnvironmentHandler(urlList, envDns);
+        String foundUrl = environmentHandler.getStartUrls("staging").get(0);
         Assert.assertEquals(foundUrl, expectedUrl);
     }
 }
