@@ -84,4 +84,34 @@ public class EnvironmentTests {
         String result = urlMvtHandler.addMvts(mvts);
         Assert.assertEquals(result, expectedUrl);
     }
+
+    @Test
+    public void testSetMvts() {
+        String mvt1 = "aer.1";
+        String mvt2 = "something.0";
+        String initialUrl = "http://tromba.io";
+        String expectedUrl = "http://tromba.io/?mvt=" + mvt1 + "&mvt=" + mvt2;
+        List<String> mvts = new ArrayList<String>();
+        mvts.add(mvt1);
+        mvts.add(mvt2);
+
+        WebDriverUrlMvtHandler urlMvtHandler = new WebDriverUrlMvtHandler(initialUrl);
+        String result = urlMvtHandler.addMvts(mvts);
+        Assert.assertEquals(result, expectedUrl);
+    }
+
+    @Test
+    public void testSetMvtsWithMoreGetParameters() {
+        String mvt1 = "aer.1";
+        String mvt2 = "something.0";
+        String initialUrl = "http://tromba.io/somewhere/cool/?get=parameter";
+        String expectedUrl = "http://tromba.io/somewhere/cool/?get=parameter&mvt=" + mvt1 + "&mvt=" + mvt2;
+        List<String> mvts = new ArrayList<String>();
+        mvts.add(mvt1);
+        mvts.add(mvt2);
+
+        WebDriverUrlMvtHandler urlMvtHandler = new WebDriverUrlMvtHandler(initialUrl);
+        String result = urlMvtHandler.addMvts(mvts);
+        Assert.assertEquals(result, expectedUrl);
+    }
 }
