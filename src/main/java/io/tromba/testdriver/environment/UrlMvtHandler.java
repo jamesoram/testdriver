@@ -12,10 +12,6 @@ public class UrlMvtHandler implements MvtHandler {
     private List<String> mvts;
     private String mvtGetParameter = "mvt";
 
-    public UrlMvtHandler(List<String> mvts) {
-        setMvts(mvts);
-    }
-
     public List<String> getMvts() {
         return mvts;
     }
@@ -36,5 +32,6 @@ public class UrlMvtHandler implements MvtHandler {
             }
             url += mvt;
         }
+        driver.get(url);
     }
 }

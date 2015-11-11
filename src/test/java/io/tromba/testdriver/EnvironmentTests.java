@@ -2,6 +2,9 @@ package io.tromba.testdriver;
 
 import io.tromba.testdriver.environment.EnvironmentHandler;
 import io.tromba.testdriver.environment.UrlEnvironmentHandler;
+import io.tromba.testdriver.environment.UrlMvtHandler;
+import org.mockito.Mockito;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,6 +12,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.mockito.Mockito.when;
 
 /**
  * Tests for the environment handlers.
@@ -73,13 +78,17 @@ public class EnvironmentTests {
 
     @Test
     public void testSetMvt() {
+        WebDriver driver = Mockito.mock(WebDriver.class);
         String mvt = "aer.1";
         String initialUrl = "http://tromba.io";
         String expectedUrl = "http://tromba.io/?mvt=" + mvt;
+        when(driver.getCurrentUrl()).thenReturn(initialUrl);
 
         List<String> mvts = new ArrayList<String>();
         mvts.add(mvt);
 
-        //UrlMvtHandler urlMvtHandler = new UrlMvtHandler(initialUrl,);
+        UrlMvtHandler urlMvtHandler = new UrlMvtHandler();
+        urlMvtHandler.addMvts(mvts, driver);
+        // fix this test
     }
 }
