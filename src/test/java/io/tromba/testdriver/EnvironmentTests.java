@@ -80,5 +80,6 @@ public class EnvironmentTests {
         List<String> mvts = new ArrayList<String>();
         mvts.add(mvt);
 
+        //UrlMvtHandler urlMvtHandler = new UrlMvtHandler(initialUrl,);
     }
 }
