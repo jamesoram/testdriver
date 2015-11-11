@@ -1,11 +1,13 @@
 package io.tromba.testdriver.environment;
 
-import org.testng.ITestNGMethod;
+import java.util.List;
 
 /**
  * Interface for dealing with multi-variate tests.
  */
 public interface MvtHandler {
 
-    String getMvts(ITestNGMethod method);
+    List<String> getMvts();
+
+    void setMvts(List<String> mvts);
 }

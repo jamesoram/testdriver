@@ -70,4 +70,15 @@ public class EnvironmentTests {
         String foundUrl = environmentHandler.getStartUrls("staging").get(0);
         Assert.assertEquals(foundUrl, expectedUrl);
     }
+
+    @Test
+    public void testSetMvt() {
+        String mvt = "aer.1";
+        String initialUrl = "http://tromba.io";
+        String expectedUrl = "http://tromba.io/?mvt=" + mvt;
+
+        List<String> mvts = new ArrayList<String>();
+        mvts.add(mvt);
+
+    }
 }
