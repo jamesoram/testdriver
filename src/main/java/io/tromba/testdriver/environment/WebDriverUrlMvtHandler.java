@@ -1,16 +1,19 @@
 package io.tromba.testdriver.environment;
 
-import org.openqa.selenium.WebDriver;
-
 import java.util.List;
 
 /**
  * Simple URL-based handler for multi-variate tests.
  */
-public class UrlMvtHandler implements MvtHandler {
+public class WebDriverUrlMvtHandler implements MvtHandler {
 
     private List<String> mvts;
-    private String mvtGetParameter = "mvt";
+    private String mvtGetParameter = "?mvt=";
+    private String url;
+
+    public WebDriverUrlMvtHandler(String url) {
+        this.url = url;
+    }
 
     public List<String> getMvts() {
         return mvts;
@@ -20,18 +23,17 @@ public class UrlMvtHandler implements MvtHandler {
         this.mvts = mvts;
     }
 
-    public void addMvts(List<String> mvts, WebDriver driver) {
-        String url = driver.getCurrentUrl();
+    public String addMvts(List<String> mvts) {
         // fudge - use a lib
         for (String mvt: mvts) {
             if (!url.contains("?mvt=")) {
                 if (!url.endsWith("/")) {
                     url += "/";
                 }
-                url += "?mvt=";
+                url += mvtGetParameter;
             }
             url += mvt;
         }
-        driver.get(url);
+        return url;
     }
 }

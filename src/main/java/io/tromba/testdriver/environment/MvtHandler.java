@@ -1,7 +1,5 @@
 package io.tromba.testdriver.environment;
 
-import org.openqa.selenium.WebDriver;
-
 import java.util.List;
 
 /**
@@ -13,5 +11,5 @@ public interface MvtHandler {
 
     void setMvts(List<String> mvts);
 
-    void addMvts(List<String> mvts, WebDriver driver);
+    String addMvts(List<String> mvts);
 }
