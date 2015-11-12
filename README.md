@@ -5,3 +5,5 @@ TODO:
 * Support for multi-variate tests
 * Documentation
 * More extensive tests
+* API testing support
+* Network capture support
