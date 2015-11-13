@@ -24,15 +24,15 @@ public class WebDriverUrlMvtHandler implements MvtHandler {
     }
 
     public String addMvts(List<String> mvts) {
-        // fudge - use a lib
         for (String mvt: mvts) {
-            if (!url.contains("?mvt=")) {
+            if (url.contains("?")) {
+                url += "&mvt=" + mvt;
+            } else {
                 if (!url.endsWith("/")) {
                     url += "/";
                 }
-                url += mvtGetParameter;
+                url += "?mvt=" + mvt;
             }
-            url += mvt;
         }
         return url;
     }
