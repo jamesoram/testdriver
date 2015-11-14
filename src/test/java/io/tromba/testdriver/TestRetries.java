@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 /**
  * Tests to ensure the listeners work.
  */
-public class TestListener extends BaseTestdriverTest {
+public class TestRetries extends BaseTestdriverTest {
 
     @Test(enabled = false)
     public void testRetries() {
