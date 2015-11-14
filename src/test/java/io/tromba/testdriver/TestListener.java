@@ -10,9 +10,9 @@ import org.testng.annotations.Test;
 /**
  * Tests to ensure the listeners work.
  */
-public class ListenerTests extends BaseTestdriverTest {
+public class TestListener extends BaseTestdriverTest {
 
-    @Test
+    @Test(enabled = false)
     public void testRetries() {
         TestNG tng = new TestNG();
         tng.setVerbose(0);
