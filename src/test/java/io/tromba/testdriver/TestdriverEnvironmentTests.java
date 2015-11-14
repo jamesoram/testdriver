@@ -14,7 +14,7 @@ import java.util.Map;
 /**
  * Tests for the environment handlers.
  */
-public class EnvironmentTests {
+public class TestdriverEnvironmentTests {
 
     @Test
     public void testProductionEnvironment() {
