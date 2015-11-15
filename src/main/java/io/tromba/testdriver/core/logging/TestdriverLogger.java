@@ -13,5 +13,12 @@ public class TestdriverLogger {
     public void log(LogLevel logLevel, String message) {
         LogEntry entry = new LogEntry(logLevel);
         entry.setMessage(message);
+        entries.add(entry);
+    }
+
+    public void finalise() {
+        for (LogEntry entry: entries) {
+            System.out.println(entry.getMessage());
+        }
     }
 }
