@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Logger for testdriver tests.
  */
-public class BasicTestdriverLogger implements ITestdriverLogger {
+public class BasicTestdriverLogger implements TestdriverLogger {
 
     private List<LogEntry> entries = new ArrayList<LogEntry>();
 

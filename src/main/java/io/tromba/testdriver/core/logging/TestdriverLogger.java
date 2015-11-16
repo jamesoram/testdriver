@@ -3,7 +3,7 @@ package io.tromba.testdriver.core.logging;
 /**
  * Interface for all Testdriver loggers.
  */
-public interface ITestdriverLogger {
+public interface TestdriverLogger {
 
     /**
      * Add log with level logLevel and message message.
