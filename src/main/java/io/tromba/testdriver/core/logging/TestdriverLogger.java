@@ -16,7 +16,7 @@ public class TestdriverLogger {
         entries.add(entry);
     }
 
-    public void finalise() {
+    public void write() {
         for (LogEntry entry: entries) {
             System.out.println(entry.getMessage());
         }
