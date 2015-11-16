@@ -2,6 +2,8 @@ package io.tromba.testdriver.core.listeners;
 
 import io.tromba.testdriver.core.TestdriverManager;
 import io.tromba.testdriver.core.WebDriverFactory;
+import io.tromba.testdriver.core.logging.BasicTestdriverLogger;
+import io.tromba.testdriver.core.logging.TestdriverLogger;
 import io.tromba.testdriver.utils.TestdriverConfig;
 import org.openqa.selenium.WebDriver;
 import org.testng.IInvokedMethod;
@@ -26,7 +28,8 @@ public class TestdriverListener implements IInvokedMethodListener {
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
             WebDriver driver = WebDriverFactory.createInstance();
-            testdriverManager.setDriver(method.getTestMethod().getMethodName(), driver);
+            TestdriverLogger logger = getLogger();
+            testdriverManager.setDriver(method.getTestMethod().getMethodName(), driver, logger);
             driver.manage().timeouts().implicitlyWait(MAX_WAIT, TimeUnit.SECONDS);
         }
     }
@@ -50,5 +53,10 @@ public class TestdriverListener implements IInvokedMethodListener {
             }
             testdriverManager.destroyDriver(method.getTestMethod().getMethodName());
         }
+    }
+
+    private TestdriverLogger getLogger() {
+        // TODO make this configurable
+        return new BasicTestdriverLogger();
     }
 }

@@ -1,5 +1,6 @@
 package io.tromba.testdriver.core;
 
+import io.tromba.testdriver.core.logging.TestdriverLogger;
 import io.tromba.testdriver.exceptions.DriverNotFoundException;
 import org.openqa.selenium.WebDriver;
 
@@ -12,24 +13,26 @@ import java.util.Set;
  */
 public class TestdriverManager {
 
-    private static Map<String, WebDriver> drivers = new HashMap<String, WebDriver>();
+    private static Map<String, TestEssential> testEssentials = new HashMap<String, TestEssential>();
 
     /**
      * Set the driver for a given method.
      * @param method the method with which to associate the driver.
      * @param driver the driver to use.
+     * @param logger the logger to use.
      */
-    public synchronized void setDriver(String method, WebDriver driver) {
-        drivers.put(generateKey(method), driver);
+    public synchronized void setDriver(String method, WebDriver driver, TestdriverLogger logger) {
+        TestEssential testEssential = new TestEssential(driver, logger);
+        testEssentials.put(generateKey(method), testEssential);
     }
 
     /**
-     * get the drvier for a method
+     * Get the driver for a method
      * @param method the method for which we want the driver.
      * @return the driver for that method.
      */
     public WebDriver getDriver(String method) {
-        return drivers.get(generateKey(method));
+        return testEssentials.get(generateKey(method)).getDriver();
     }
 
     /**
@@ -37,15 +40,15 @@ public class TestdriverManager {
      * @param method the method for which we want to destroy the driver.
      */
     public synchronized void destroyDriver(String method) {
-        drivers.remove(method);
+        testEssentials.remove(method);
     }
 
     /**
-     * Get all the drivers.
-     * @return the Set of drivers currently in use.
+     * Get all the testEssentials.
+     * @return the Set of testEssentials currently in use.
      */
     public Set<String> getDriverSet() {
-        return drivers.keySet();
+        return testEssentials.keySet();
     }
 
     /**
