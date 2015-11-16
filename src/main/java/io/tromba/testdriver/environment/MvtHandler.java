@@ -7,9 +7,16 @@ import java.util.List;
  */
 public interface MvtHandler {
 
+    /**
+     * Return a list of all active MVTs.
+     * @return the list of active MVTs.
+     */
     List<String> getMvts();
 
-    void setMvts(List<String> mvts);
-
+    /**
+     * Ensure the specified MVTs are active.
+     * @param mvts MVTs to activate.
+     * @return An implementation-dependant representation of the active MVTs.
+     */
     String addMvts(List<String> mvts);
 }

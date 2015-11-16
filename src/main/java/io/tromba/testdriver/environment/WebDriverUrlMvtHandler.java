@@ -15,14 +15,19 @@ public class WebDriverUrlMvtHandler implements MvtHandler {
         this.url = url;
     }
 
+    /**
+     * Return a list of all active MVTs.
+     * @return the list of active MVTs.
+     */
     public List<String> getMvts() {
         return mvts;
     }
 
-    public void setMvts(List<String> mvts) {
-        this.mvts = mvts;
-    }
-
+    /**
+     * Ensure the specified list of MVTs is active
+     * @param mvts MVTs to activate.
+     * @return a URL with the MVTs to activate.
+     */
     public String addMvts(List<String> mvts) {
         for (String mvt: mvts) {
             if (url.contains("?")) {
