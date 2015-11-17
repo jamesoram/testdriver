@@ -7,7 +7,7 @@ TODO:
 * API testing support
 * Network capture support
 
-To add Testdriver to your project include this code in your pom.xml
+To include Testdriver in your project add the following code to your pom.xml:
 
 ```xml
 <dependency>
