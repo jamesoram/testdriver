@@ -6,6 +6,8 @@ import io.tromba.testdriver.core.logging.BasicTestdriverLogger;
 import io.tromba.testdriver.core.logging.TestdriverLogger;
 import io.tromba.testdriver.utils.TestdriverConfig;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.Augmenter;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
@@ -28,9 +30,10 @@ public class TestdriverListener implements IInvokedMethodListener {
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
             WebDriver driver = WebDriverFactory.createInstance();
+            WebDriver augmentedDriver = new EventFiringWebDriver(new Augmenter().augment(driver));
             TestdriverLogger logger = getLogger();
-            testdriverManager.setDriver(method.getTestMethod().getMethodName(), driver, logger);
-            driver.manage().timeouts().implicitlyWait(MAX_WAIT, TimeUnit.SECONDS);
+            testdriverManager.setDriver(method.getTestMethod().getMethodName(), augmentedDriver, logger);
+            augmentedDriver.manage().timeouts().implicitlyWait(MAX_WAIT, TimeUnit.SECONDS);
         }
     }
 
