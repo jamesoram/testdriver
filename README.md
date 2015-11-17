@@ -1,4 +1,4 @@
-# Testdriver: minimal test framework for Selenium WebDriver.
+# Testdriver: another test framework for Selenium WebDriver.
 
 TODO:
 * Logging
