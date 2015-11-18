@@ -53,7 +53,7 @@ public class BaseTestdriverTest {
 
     /**
      * Log and assert equality.
-     * @param expected 
+     * @param expected
      * @param found
      */
     public void assertEquals(String expected, String found) {
