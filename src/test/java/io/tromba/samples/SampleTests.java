@@ -18,7 +18,7 @@ public class SampleTests extends BaseTestdriverTest {
 
     @Test(dataProvider = "queries")
     public void testSearchGoogle(String query) {
-        driver().get("https://google.com");
+        driver().get("https://google.com/");
         driver().findElement(By.id("lst-ib")).sendKeys(query);
         Assert.assertTrue(driver().getTitle().contains("Google"));
     }
