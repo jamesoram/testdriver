@@ -13,7 +13,7 @@ public class SampleTests extends BaseTestdriverTest {
 
     @Test
     public void testGetAPage() {
-        driver().get("http://tromba.io");
+        driver().get("http://tromba.io/");
     }
 
     @Test(dataProvider = "queries")
