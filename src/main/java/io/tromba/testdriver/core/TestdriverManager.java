@@ -40,6 +40,7 @@ public class TestdriverManager {
      * @param method the method for which we want to destroy the driver.
      */
     public synchronized void destroyDriver(String method) {
+        testEssentials.get(generateKey(method)).getLogger().write();
         testEssentials.remove(method);
     }
 
