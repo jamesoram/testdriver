@@ -1,8 +1,5 @@
-package io.tromba.testdriver;
+package io.tromba.testdriver.environment;
 
-import io.tromba.testdriver.environment.EnvironmentHandler;
-import io.tromba.testdriver.environment.UrlEnvironmentHandler;
-import io.tromba.testdriver.environment.WebDriverUrlMvtHandler;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

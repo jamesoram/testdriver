@@ -1,7 +1,6 @@
-package io.tromba.testdriver;
+package io.tromba.testdriver.utils;
 
 import com.typesafe.config.ConfigException;
-import io.tromba.testdriver.utils.TestdriverConfigLoader;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
