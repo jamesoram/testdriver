@@ -36,6 +36,15 @@ public class TestdriverManager {
     }
 
     /**
+     * Get the UUID for the specified test.
+     * @param method the method name of the test.
+     * @return a String containing the correct UUID.
+     */
+    public String getUuid(String method) {
+        return testEssentials.get(generateKey(method)).getUuid();
+    }
+
+    /**
      * Destroy the driver for a method.
      * @param method the method for which we want to destroy the driver.
      */
