@@ -14,6 +14,7 @@ import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -56,7 +57,8 @@ public class TestdriverListener implements IInvokedMethodListener {
                 driver.quit();
                 if (!method.getTestResult().isSuccess()) {
                     String screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
-                    // store screenshot
+                    File savedScreenshot = new File(uuid);
+                    savedScreenshot.createNewFile();
                 }
             } catch (Exception e) {
                 throw new RuntimeException("An error occurred - Are you pointing to the correct Selenium Grid? "
