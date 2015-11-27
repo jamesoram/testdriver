@@ -61,7 +61,7 @@ public class TestdriverListener implements IInvokedMethodListener {
                     savedScreenshot.createNewFile();
                 }
             } catch (Exception e) {
-                throw new RuntimeException("An error occurred - Are you pointing to the correct Selenium Grid? "
+                throw new RuntimeException("An error occurred - Are you pointing to the correct Selenium Grid?\n"
                         + e.getMessage());
             }
             testdriverManager.destroyDriver(method.getTestMethod().getMethodName());
