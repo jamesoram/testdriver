@@ -3,6 +3,7 @@ package io.tromba.testdriver.core.listeners;
 import io.tromba.testdriver.core.TestdriverManager;
 import io.tromba.testdriver.core.WebDriverFactory;
 import io.tromba.testdriver.core.logging.BasicTestdriverLogger;
+import io.tromba.testdriver.core.logging.LogLevel;
 import io.tromba.testdriver.core.logging.TestdriverLogger;
 import io.tromba.testdriver.utils.TestdriverConfig;
 import org.openqa.selenium.OutputType;
@@ -59,6 +60,7 @@ public class TestdriverListener implements IInvokedMethodListener {
                     String screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
                     File savedScreenshot = new File(uuid);
                     savedScreenshot.createNewFile();
+                    getLogger().log(LogLevel.INFO, screenshot);
                 }
             } catch (Exception e) {
                 throw new RuntimeException("An error occurred - Are you pointing to the correct Selenium Grid?\n"
