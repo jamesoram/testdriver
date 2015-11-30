@@ -3,6 +3,7 @@ package io.tromba.testdriver.core.listeners;
 import io.tromba.testdriver.core.TestdriverManager;
 import io.tromba.testdriver.core.WebDriverFactory;
 import io.tromba.testdriver.core.logging.BasicTestdriverLogger;
+import io.tromba.testdriver.core.logging.EventLoggingWebDriver;
 import io.tromba.testdriver.core.logging.LogLevel;
 import io.tromba.testdriver.core.logging.TestdriverLogger;
 import io.tromba.testdriver.utils.TestdriverConfig;
@@ -34,8 +35,10 @@ public class TestdriverListener implements IInvokedMethodListener {
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
             WebDriver driver = WebDriverFactory.createInstance();
-            WebDriver augmentedDriver = new EventFiringWebDriver(new Augmenter().augment(driver));
+            EventFiringWebDriver augmentedDriver = new EventFiringWebDriver(new Augmenter().augment(driver));
             TestdriverLogger logger = getLogger();
+            EventLoggingWebDriver loggingWebDriver = new EventLoggingWebDriver(logger);
+            augmentedDriver.register(loggingWebDriver);
             testdriverManager.setDriver(method.getTestMethod().getMethodName(), augmentedDriver, logger);
             augmentedDriver.manage().timeouts().implicitlyWait(MAX_WAIT, TimeUnit.SECONDS);
         }
