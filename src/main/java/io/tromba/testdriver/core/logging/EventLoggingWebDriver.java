@@ -49,19 +49,19 @@ public class EventLoggingWebDriver implements WebDriverEventListener {
     }
 
     public void beforeClickOn(WebElement webElement, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "About to click on ");
+        logger.log(LogLevel.INFO, "About to click on " + webElement == null ? "" : webElement.toString());
     }
 
     public void afterClickOn(WebElement webElement, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "Clicked on ");
+        logger.log(LogLevel.INFO, "Clicked on " + webElement == null ? "" : webElement.toString());
     }
 
     public void beforeChangeValueOf(WebElement webElement, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "About to change value of ");
+        logger.log(LogLevel.INFO, "About to change value of " + webElement == null ? "" : webElement.toString());
     }
 
     public void afterChangeValueOf(WebElement webElement, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "Changed value of ");
+        logger.log(LogLevel.INFO, "Changed value of "  + webElement == null ? "" : webElement.toString());
     }
 
     public void beforeScript(String s, WebDriver webDriver) {
