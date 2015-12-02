@@ -57,7 +57,6 @@ public class TestdriverListener implements IInvokedMethodListener {
                 WebDriver driver = testdriverManager.getDriver(key);
                 uuid = testdriverManager.getUuid(key);
                 testdriverManager.destroyDriver(key);
-                driver.close();
                 driver.quit();
                 if (!method.getTestResult().isSuccess()) {
                     String screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
