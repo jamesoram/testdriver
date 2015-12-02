@@ -41,27 +41,27 @@ public class EventLoggingWebDriver implements WebDriverEventListener {
     }
 
     public void beforeFindBy(By by, WebElement webElement, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "About to FindBy: " + by.toString() + " " + webElement.toString());
+        logger.log(LogLevel.INFO, "About to FindBy: " + by.toString());
     }
 
     public void afterFindBy(By by, WebElement webElement, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "After to FindBy: " + by.toString() + " " + webElement.toString());
+        logger.log(LogLevel.INFO, "After to FindBy: " + by.toString());
     }
 
     public void beforeClickOn(WebElement webElement, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "About to click on " + webElement.toString());
+        logger.log(LogLevel.INFO, "About to click on ");
     }
 
     public void afterClickOn(WebElement webElement, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "Clicked on " + webElement.toString());
+        logger.log(LogLevel.INFO, "Clicked on ");
     }
 
     public void beforeChangeValueOf(WebElement webElement, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "About to change value of " + webElement.toString());
+        logger.log(LogLevel.INFO, "About to change value of ");
     }
 
     public void afterChangeValueOf(WebElement webElement, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "Changed value of " + webElement.toString());
+        logger.log(LogLevel.INFO, "Changed value of ");
     }
 
     public void beforeScript(String s, WebDriver webDriver) {
