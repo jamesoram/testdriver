@@ -5,8 +5,8 @@ import io.tromba.testdriver.core.listeners.TestdriverListener;
 import io.tromba.testdriver.core.logging.LogLevel;
 import io.tromba.testdriver.core.logging.TestdriverLogger;
 import io.tromba.testdriver.environment.EnvironmentHandler;
-import junit.framework.Assert;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 
 /**
