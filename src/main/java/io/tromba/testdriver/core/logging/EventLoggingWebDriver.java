@@ -75,4 +75,12 @@ public class EventLoggingWebDriver implements WebDriverEventListener {
     public void onException(Throwable throwable, WebDriver webDriver) {
         logger.log(LogLevel.INFO, "Caught exception: " + throwable.getMessage());
     }
+
+    public void beforeNavigateRefresh(WebDriver driver) {
+        logger.log(LogLevel.INFO, "About to refresh");
+    }
+
+    public void afterNavigateRefresh(WebDriver driver) {
+        logger.log(LogLevel.INFO, "Finished refreshing");
+    }
 }
