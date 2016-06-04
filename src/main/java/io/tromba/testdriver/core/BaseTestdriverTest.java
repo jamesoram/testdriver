@@ -53,8 +53,8 @@ public class BaseTestdriverTest {
 
     /**
      * Log and assert equality.
-     * @param expected
-     * @param found
+     * @param expected what was expected
+     * @param found what was actually found
      */
     public void assertEquals(String expected, String found) {
         logger().log(LogLevel.ASSERTION, "Asserting that " + expected + " equals " + found);
