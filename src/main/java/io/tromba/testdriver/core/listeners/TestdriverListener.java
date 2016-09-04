@@ -16,6 +16,7 @@ import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 
+import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -58,8 +59,8 @@ public class TestdriverListener implements IInvokedMethodListener {
                 testdriverManager.destroyDriver(key);
                 if (!method.getTestResult().isSuccess()) {
                     String screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
-                    /*File savedScreenshot = new File(uuid);
-                    savedScreenshot.createNewFile();*/
+                    File savedScreenshot = new File(uuid);
+                    savedScreenshot.createNewFile();
                     getLogger().log(LogLevel.INFO, screenshot);
                 }
                 driver.quit();
