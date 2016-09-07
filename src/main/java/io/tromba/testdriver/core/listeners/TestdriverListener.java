@@ -52,11 +52,10 @@ public class TestdriverListener implements IInvokedMethodListener {
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
             String uuid = "";
+            final String key = method.getTestMethod().getMethodName();
             try {
-                String key = method.getTestMethod().getMethodName();
                 WebDriver driver = testdriverManager.getDriver(key);
                 uuid = testdriverManager.getUuid(key);
-                testdriverManager.destroyDriver(key);
                 if (!method.getTestResult().isSuccess()) {
                     String screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
                     File savedScreenshot = new File(uuid);
@@ -69,7 +68,7 @@ public class TestdriverListener implements IInvokedMethodListener {
                 throw new RuntimeException("An error occurred - Are you pointing to the correct Selenium Grid?\n"
                         + e.getMessage());
             } finally {
-                testdriverManager.destroyDriver(method.getTestMethod().getMethodName());
+                testdriverManager.destroyDriver(key);
             }
         }
     }
