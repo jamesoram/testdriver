@@ -83,4 +83,20 @@ public class EventLoggingWebDriver implements WebDriverEventListener {
     public void afterNavigateRefresh(WebDriver driver) {
         logger.log(LogLevel.INFO, "Finished refreshing");
     }
+
+    public void afterAlertAccept(WebDriver driver) {
+        logger.log(LogLevel.INFO, "Accepted alert");
+    }
+    
+    public void beforeAlertAccept(WebDriver driver) {
+        logger.log(LogLevel.INFO, "About to accept alert");
+    }
+
+    public void afterAlertDismiss(WebDriver webDriver) {
+        logger.log(LogLevel.INFO, "Dismissed alert");
+    }
+
+    public void beforeAlertDismiss(WebDriver webDriver) {
+        logger.log(LogLevel.INFO, "About to dismiss alert");
+    }
 }
