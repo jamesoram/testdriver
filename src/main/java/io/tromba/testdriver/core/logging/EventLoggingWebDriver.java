@@ -87,7 +87,7 @@ public class EventLoggingWebDriver implements WebDriverEventListener {
     public void afterAlertAccept(WebDriver driver) {
         logger.log(LogLevel.INFO, "Accepted alert");
     }
-    
+
     public void beforeAlertAccept(WebDriver driver) {
         logger.log(LogLevel.INFO, "About to accept alert");
     }
