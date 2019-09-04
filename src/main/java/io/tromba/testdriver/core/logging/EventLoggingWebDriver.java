@@ -1,6 +1,7 @@
 package io.tromba.testdriver.core.logging;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
@@ -72,8 +73,32 @@ public class EventLoggingWebDriver implements WebDriverEventListener {
         logger.log(LogLevel.INFO, "Executed script " + s);
     }
 
+    public void beforeSwitchToWindow(String s, WebDriver webDriver) {
+        logger.log(LogLevel.INFO, "About to switch to window " + s);
+    }
+
+    public void afterSwitchToWindow(String s, WebDriver webDriver) {
+        logger.log(LogLevel.INFO, "Switched to window " + s);
+    }
+
     public void onException(Throwable throwable, WebDriver webDriver) {
         logger.log(LogLevel.INFO, "Caught exception: " + throwable.getMessage());
+    }
+
+    public <X> void beforeGetScreenshotAs(OutputType<X> outputType) {
+        logger.log(LogLevel.INFO, "About to get screenshot as: " + outputType.toString());
+    }
+
+    public <X> void afterGetScreenshotAs(OutputType<X> outputType, X x) {
+        logger.log(LogLevel.INFO, "Got screenshot as: " + outputType.toString());
+    }
+
+    public void beforeGetText(WebElement webElement, WebDriver webDriver) {
+        logger.log(LogLevel.INFO, "About to get text from element");
+    }
+
+    public void afterGetText(WebElement webElement, WebDriver webDriver, String s) {
+        logger.log(LogLevel.INFO, "Got text from element " + s);
     }
 
     public void beforeNavigateRefresh(WebDriver driver) {
