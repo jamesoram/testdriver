@@ -40,6 +40,7 @@ public class TestdriverListener implements IInvokedMethodListener {
             EventLoggingWebDriver loggingWebDriver = new EventLoggingWebDriver(logger);
 //            augmentedDriver.register(loggingWebDriver);
 //            testdriverManager.setDriver(method.getTestMethod().getMethodName(), augmentedDriver, logger);
+            testdriverManager.setDriver(method.getTestMethod().getMethodName(), driver, logger);
 //            augmentedDriver.manage().timeouts().implicitlyWait(MAX_WAIT, TimeUnit.SECONDS);
         }
     }
