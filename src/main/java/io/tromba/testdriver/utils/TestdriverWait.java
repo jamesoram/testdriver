@@ -7,6 +7,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 /**
  * Class for wait conditions.
  */
@@ -18,7 +20,7 @@ public class TestdriverWait extends WebDriverWait {
      * @param timeOutInSeconds Maximum amount to wait.
      */
     public TestdriverWait(WebDriver driver, long timeOutInSeconds) {
-        super(driver, timeOutInSeconds);
+        super(driver, Duration.ofSeconds(timeOutInSeconds));
     }
 
     /**

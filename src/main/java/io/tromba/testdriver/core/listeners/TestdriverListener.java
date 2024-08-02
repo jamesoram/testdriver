@@ -11,7 +11,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.Augmenter;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
+//import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
@@ -35,12 +35,12 @@ public class TestdriverListener implements IInvokedMethodListener {
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
             WebDriver driver = WebDriverFactory.createInstance();
-            EventFiringWebDriver augmentedDriver = new EventFiringWebDriver(new Augmenter().augment(driver));
+//            EventFiringWebDriver augmentedDriver = new EventFiringWebDriver(new Augmenter().augment(driver));
             TestdriverLogger logger = getLogger();
             EventLoggingWebDriver loggingWebDriver = new EventLoggingWebDriver(logger);
-            augmentedDriver.register(loggingWebDriver);
-            testdriverManager.setDriver(method.getTestMethod().getMethodName(), augmentedDriver, logger);
-            augmentedDriver.manage().timeouts().implicitlyWait(MAX_WAIT, TimeUnit.SECONDS);
+//            augmentedDriver.register(loggingWebDriver);
+//            testdriverManager.setDriver(method.getTestMethod().getMethodName(), augmentedDriver, logger);
+//            augmentedDriver.manage().timeouts().implicitlyWait(MAX_WAIT, TimeUnit.SECONDS);
         }
     }
 

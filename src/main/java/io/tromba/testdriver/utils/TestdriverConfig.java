@@ -19,6 +19,8 @@ public class TestdriverConfig {
 
     private static String browser;
 
+    private static String version;
+
     private TestdriverConfig() {
         TestdriverConfigLoader configLoader = new TestdriverConfigLoader();
         grid = configLoader.get("grid");
@@ -27,6 +29,7 @@ public class TestdriverConfig {
         globalTimeoutInMillis = configLoader.get("globalTimeoutInMillis");
         maxRetries = configLoader.get("maxRetries");
         browser = configLoader.get("browser");
+        version = configLoader.get("version");
     }
 
     /**
@@ -64,5 +67,9 @@ public class TestdriverConfig {
 
     public static String getMaxRetries() {
         return maxRetries;
+    }
+
+    public static String getVersion() {
+        return version;
     }
 }

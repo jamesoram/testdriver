@@ -2,6 +2,7 @@ package io.tromba.testdriver.core;
 
 import io.tromba.testdriver.utils.TestdriverConfig;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -17,23 +18,14 @@ public class WebDriverFactory {
     private static final TestdriverConfig config = TestdriverConfig.getInstance();
     private static final String URL = config.getGrid();
     private static final String browser = config.getBrowser();
+    private static final String version = config.getVersion();
 
     /**
      * Create a new WebDriver by connecting to the Selenium Grid.
      * @return the newly-created driver.
      */
     public static WebDriver createInstance() {
-        Capabilities capabilities = null;
-        if (browser.equals("phantomjs")) {
-            capabilities = DesiredCapabilities.phantomjs();
-        } else if (browser.equals("chrome")) {
-            capabilities = DesiredCapabilities.chrome();
-        } else if (browser.equals("ie")) {
-            capabilities = DesiredCapabilities.internetExplorer();
-        } else {
-            capabilities = DesiredCapabilities.firefox();
-        }
-
+        Capabilities capabilities = new DesiredCapabilities(browser, version, Platform.ANY);
         try {
             return new RemoteWebDriver(new URL(URL), capabilities);
         } catch (MalformedURLException ex) {
