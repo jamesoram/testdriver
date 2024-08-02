@@ -9,6 +9,8 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Factory for WebDrivers.
@@ -25,7 +27,11 @@ public class WebDriverFactory {
      * @return the newly-created driver.
      */
     public static WebDriver createInstance() {
-        Capabilities capabilities = new DesiredCapabilities(browser, version, Platform.ANY);
+        Map<String, String> caps = new HashMap<>();
+        //{"browserName":"chrome","platformName":"platformName"}
+        caps.put("browserName", "chrome");
+//        caps.put("platformName", "platformName");
+        Capabilities capabilities = new DesiredCapabilities(caps);//(browser, version, Platform.ANY);
         try {
             return new RemoteWebDriver(new URL(URL), capabilities);
         } catch (MalformedURLException ex) {
