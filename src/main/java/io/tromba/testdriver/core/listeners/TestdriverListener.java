@@ -11,13 +11,11 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.Augmenter;
-//import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
-
 import java.io.File;
-import java.util.concurrent.TimeUnit;
 
 /**
  * TestNG listener to create and destroy drivers before and after the tests are run.
@@ -35,9 +33,10 @@ public class TestdriverListener implements IInvokedMethodListener {
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
             WebDriver driver = WebDriverFactory.createInstance();
-//            EventFiringWebDriver augmentedDriver = new EventFiringWebDriver(new Augmenter().augment(driver));
+
+//            WebDriver augmentedDriver = new EventFiringDecorator().decorate(new Augmenter().augment(driver));
             TestdriverLogger logger = getLogger();
-            EventLoggingWebDriver loggingWebDriver = new EventLoggingWebDriver(logger);
+//            EventLoggingWebDriver loggingWebDriver = new EventLoggingWebDriver(logger);
 //            augmentedDriver.register(loggingWebDriver);
 //            testdriverManager.setDriver(method.getTestMethod().getMethodName(), augmentedDriver, logger);
             testdriverManager.setDriver(method.getTestMethod().getMethodName(), driver, logger);
