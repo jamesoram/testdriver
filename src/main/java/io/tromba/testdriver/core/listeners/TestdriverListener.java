@@ -32,7 +32,7 @@ public class TestdriverListener implements IInvokedMethodListener {
      */
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
-            WebDriver driver = WebDriverFactory.createInstance();
+            WebDriver driver = WebDriverFactory.createInstance(method.getTestMethod().getMethodName());
 
 //            WebDriver augmentedDriver = new EventFiringDecorator().decorate(new Augmenter().augment(driver));
             TestdriverLogger logger = getLogger();

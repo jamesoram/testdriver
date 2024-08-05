@@ -26,10 +26,11 @@ public class WebDriverFactory {
      * Create a new WebDriver by connecting to the Selenium Grid.
      * @return the newly-created driver.
      */
-    public static WebDriver createInstance() {
+    public static WebDriver createInstance(String name) {
         Map<String, String> caps = new HashMap<>();
         //{"browserName":"chrome","platformName":"platformName"}
         caps.put("browserName", "chrome");
+        caps.put("se:name", name);
 //        caps.put("platformName", "platformName");
         Capabilities capabilities = new DesiredCapabilities(caps);//(browser, version, Platform.ANY);
         try {
