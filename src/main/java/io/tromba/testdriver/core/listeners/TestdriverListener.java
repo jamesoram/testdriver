@@ -58,7 +58,7 @@ public class TestdriverListener implements IInvokedMethodListener {
                 uuid = testdriverManager.getUuid(key);
                 if (!method.getTestResult().isSuccess()) {
                     String screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
-                    File savedScreenshot = new File("target/" + uuid + ".jpg");
+                    File savedScreenshot = new File("target" + File.separator + uuid + ".jpg");
                     savedScreenshot.createNewFile();
                     getLogger().log(LogLevel.INFO, screenshot);
                 }
