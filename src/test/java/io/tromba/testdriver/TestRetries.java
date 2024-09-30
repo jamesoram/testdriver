@@ -17,7 +17,6 @@ public class TestRetries extends BaseTestdriverTest {
         TestNG tng = new TestNG();
         tng.setVerbose(0);
         tng.setTestClasses(new Class[] { FailureTests.class });
-//        tng.setAnnotationTransformer(new TestdriverAnnotationTransformer());
         TestListenerAdapter tla = new TestListenerAdapter();
         tng.addListener(tla);
         tng.run();

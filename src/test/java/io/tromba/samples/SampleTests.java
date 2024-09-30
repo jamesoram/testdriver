@@ -13,14 +13,14 @@ public class SampleTests extends BaseTestdriverTest {
 
     @Test
     public void testGetAPage() {
-        driver().get("http://tromba.io/");
+        driver().get("http://leoaureum.co.uk/");
     }
 
     @Test(dataProvider = "queries")
     public void testSearchGoogle(String query) {
-        driver().get("https://google.com/");
-        new SampleGooglePage(driver()).search(query);
-        Assert.assertTrue(driver().getTitle().contains("Google"));
+        driver().get("https://bing.com/");
+        new SampleBingPage(driver()).search(query);
+        Assert.assertTrue(driver().getTitle().contains("Bing"));
     }
 
     @Test(enabled = false)

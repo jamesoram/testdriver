@@ -28,7 +28,6 @@ public class WebDriverFactory {
      */
     public static WebDriver createInstance(String name) {
         Map<String, String> caps = new HashMap<>();
-        //{"browserName":"chrome","platformName":"platformName"}
         caps.put("browserName", "chrome");
         caps.put("se:name", name);
 //        caps.put("platformName", "platformName");

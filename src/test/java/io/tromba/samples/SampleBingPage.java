@@ -8,16 +8,16 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Sample page object for Google search
  */
-public class SampleGooglePage extends AbstractPage {
+public class SampleBingPage extends AbstractPage {
 
-    @FindBy(name = "q")
+    @FindBy(id = "sb_form_q")
     private WebElement searchInput;
 
-    public SampleGooglePage(WebDriver driver) {
+    public SampleBingPage(WebDriver driver) {
         super(driver);
     }
 
-    public SampleGooglePage search(String query) {
+    public SampleBingPage search(String query) {
         wait.forElementVisible(searchInput);
         searchInput.sendKeys(query);
         return this;
