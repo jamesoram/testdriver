@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>io.tromba</groupId>
+    <groupId>uk.co.leoaureum</groupId>
     <artifactId>testdriver</artifactId>
-    <version>0.9.1</version>
+    <version>0.9.2</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -15,7 +15,7 @@
         <testng.version>7.10.2</testng.version>
         <config.version>1.4.3</config.version>
         <nexus-staging.version>1.7.0</nexus-staging.version>
-        <maven-source.version>4.0.0-beta-1</maven-source.version>
+        <maven-source.version>3.3.1</maven-source.version>
         <maven-javadoc.version>3.8.0</maven-javadoc.version>
         <maven-gpg.version>3.2.4</maven-gpg.version>
         <maven-surefire.version>3.3.1</maven-surefire.version>
@@ -77,14 +77,12 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>${nexus-staging.version}</version>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.6.0</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <serverId>ossrh</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                    <publishingServerId>central</publishingServerId>
                 </configuration>
             </plugin>
             <plugin>
