@@ -28,16 +28,22 @@ public class TestdriverListener implements IInvokedMethodListener {
      * @param testResult the result of the test.
      */
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
+        TestdriverLogger logger = getLogger();
+        String methodName = method.getTestMethod().getMethodName();
         if (method.isTestMethod()) {
             WebDriver driver = WebDriverFactory.createInstance(method.getTestMethod().getMethodName());
 
 //            WebDriver augmentedDriver = new EventFiringDecorator().decorate(new Augmenter().augment(driver));
-            TestdriverLogger logger = getLogger();
+
 //            EventLoggingWebDriver loggingWebDriver = new EventLoggingWebDriver(logger);
 //            augmentedDriver.register(loggingWebDriver);
 //            testdriverManager.setDriver(method.getTestMethod().getMethodName(), augmentedDriver, logger);
-            testdriverManager.setDriver(method.getTestMethod().getMethodName(), driver, logger);
+            testdriverManager.setDriver(methodName, driver, logger);
 //            augmentedDriver.manage().timeouts().implicitlyWait(MAX_WAIT, TimeUnit.SECONDS);
+        } else {
+            String message = "Method does not appear to be a test method. " + methodName;
+            System.err.println(message);
+            logger.log(LogLevel.INFO, message);
         }
     }
 
