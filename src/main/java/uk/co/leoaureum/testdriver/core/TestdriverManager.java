@@ -13,7 +13,7 @@ import java.util.Set;
  */
 public class TestdriverManager {
 
-    private static Map<String, TestEssential> testEssentials = new HashMap<String, TestEssential>();
+    private static final Map<String, TestEssential> testEssentials = new HashMap<>();
 
     /**
      * Set the driver for a given method.
@@ -32,7 +32,8 @@ public class TestdriverManager {
      * @return the driver for that method.
      */
     public WebDriver getDriver(String method) {
-        return testEssentials.get(generateKey(method)).getDriver();
+        TestEssential testEssential = getTestEssential(method);
+        return testEssential.getDriver();
     }
 
     /**
@@ -41,7 +42,7 @@ public class TestdriverManager {
      * @return a String containing the correct UUID.
      */
     public String getUuid(String method) {
-        return testEssentials.get(generateKey(method)).getUuid();
+        return getTestEssential(method).getUuid();
     }
 
     /**
@@ -49,7 +50,7 @@ public class TestdriverManager {
      * @param method the method for which we want to destroy the driver.
      */
     public synchronized void destroyDriver(String method) {
-        testEssentials.get(generateKey(method)).getLogger().write();
+        getTestEssential(method).getLogger().write();
         testEssentials.remove(method);
     }
 
@@ -78,7 +79,7 @@ public class TestdriverManager {
     }
 
     private TestdriverLogger getLogger(String method) {
-        return testEssentials.get(generateKey(method)).getLogger();
+        return getTestEssential(method).getLogger();
     }
 
     private String findMethod() {
@@ -95,5 +96,14 @@ public class TestdriverManager {
 
     private String generateKey(String method) {
         return method + Thread.currentThread().getId();
+    }
+
+    private TestEssential getTestEssential(String method) {
+        TestEssential testEssential = testEssentials.get(generateKey(method));
+        if (null == testEssential) {
+            throw new RuntimeException("Could not find driver for method: " + method +
+                    ". Please check that the grid is running correctly and there is connectivity");
+        }
+        return testEssential;
     }
 }

@@ -27,7 +27,7 @@ public class WebDriverFactory {
      */
     public static WebDriver createInstance(String name) {
         Map<String, String> caps = new HashMap<>();
-        caps.put("browserName", "chrome");
+        caps.put("browserName", browser);
         caps.put("se:name", name);
 //        caps.put("platformName", "platformName");
         Capabilities capabilities = new DesiredCapabilities(caps);//(browser, version, Platform.ANY);
@@ -35,6 +35,8 @@ public class WebDriverFactory {
             return new RemoteWebDriver(new URL(URL), capabilities);
         } catch (MalformedURLException ex) {
             throw new RuntimeException("Malformed Remote WebDriver URL: " + URL + "\n" + ex.getMessage());
+        } catch (Exception e) {
+            throw new RuntimeException("Error: "+ e.getMessage());
         }
     }
 }
