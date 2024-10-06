@@ -24,7 +24,7 @@
     </properties>
 
     <name>Testdriver</name>
-    <description>Testdriver: minimal test framework for Selenium WebDriver.</description>
+    <description>Testdriver: another test framework for Selenium WebDriver.</description>
     <url>https://github.com/jamesoram/testdriver</url>
 
     <licenses>
@@ -38,8 +38,8 @@
         <developer>
             <name>James Oram</name>
             <email>herespam1@hotmail.com</email>
-            <organization>Tromba</organization>
-            <organizationUrl>http://www.tromba.io</organizationUrl>
+            <organization>Leo Aureum</organization>
+            <organizationUrl>http://www.leoaureum.co.uk</organizationUrl>
         </developer>
     </developers>
 
