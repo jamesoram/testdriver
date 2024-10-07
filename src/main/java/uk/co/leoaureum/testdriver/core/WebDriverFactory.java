@@ -32,6 +32,7 @@ public class WebDriverFactory {
 //        caps.put("platformName", "platformName");
         Capabilities capabilities = new DesiredCapabilities(caps);//(browser, version, Platform.ANY);
         try {
+            System.out.println("creating " + browser);
             return new RemoteWebDriver(new URL(URL), capabilities);
         } catch (MalformedURLException ex) {
             throw new RuntimeException("Malformed Remote WebDriver URL: " + URL + "\n" + ex.getMessage());

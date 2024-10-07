@@ -84,6 +84,9 @@ public class TestdriverManager {
 
     private String findMethod() {
         Set<String> methods = getDriverSet();
+        for (String m : methods) {
+            System.out.println(m);
+        }
         StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
         for (StackTraceElement stackTraceElement: stackTraceElements) {
             String methodName = stackTraceElement.getMethodName();
