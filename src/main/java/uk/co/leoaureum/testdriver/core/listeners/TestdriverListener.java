@@ -20,7 +20,7 @@ import java.io.File;
 public class TestdriverListener implements IInvokedMethodListener {
 
     private static final int MAX_WAIT = Integer.valueOf(TestdriverConfig.getInstance().getMaxImplicitWaitInSeconds());
-    private TestdriverManager testdriverManager = new TestdriverManager();
+    private final TestdriverManager testdriverManager = new TestdriverManager();
 
     /**
      * Runs before each test invocation. Sets up the driver for each test.
@@ -31,7 +31,7 @@ public class TestdriverListener implements IInvokedMethodListener {
         TestdriverLogger logger = getLogger();
         String methodName = method.getTestMethod().getMethodName();
         if (method.isTestMethod()) {
-            WebDriver driver = WebDriverFactory.createInstance(method.getTestMethod().getMethodName());
+            WebDriver driver = WebDriverFactory.createInstance(methodName);
 
 //            WebDriver augmentedDriver = new EventFiringDecorator().decorate(new Augmenter().augment(driver));
 
