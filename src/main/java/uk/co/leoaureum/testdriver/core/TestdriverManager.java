@@ -1,5 +1,6 @@
 package uk.co.leoaureum.testdriver.core;
 
+import org.testng.annotations.Test;
 import uk.co.leoaureum.testdriver.core.logging.TestdriverLogger;
 import uk.co.leoaureum.testdriver.exceptions.DriverNotFoundException;
 import org.openqa.selenium.WebDriver;
@@ -23,6 +24,7 @@ public class TestdriverManager {
      */
     public synchronized void setDriver(String method, WebDriver driver, TestdriverLogger logger) {
         TestEssential testEssential = new TestEssential(driver, logger);
+        System.out.println("Adding driver and logger for " + method);
         testEssentials.put(generateKey(method), testEssential);
     }
 
@@ -84,9 +86,8 @@ public class TestdriverManager {
 
     private String findMethod() {
         Set<String> methods = getDriverSet();
-        for (String m : methods) {
-            System.out.println(m);
-        }
+        System.out.println(String.join(", ", methods));
+
         StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
         for (StackTraceElement stackTraceElement: stackTraceElements) {
             String methodName = stackTraceElement.getMethodName();
