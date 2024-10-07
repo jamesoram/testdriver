@@ -30,7 +30,7 @@ public class BaseTestdriverTest {
      * Get the driver that belongs to the calling test.
      * @return the correct WebDriver.
      */
-    public WebDriver driver() {
+    public synchronized WebDriver driver() {
         return testdriverManager.driver();
     }
 
