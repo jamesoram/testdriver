@@ -15,13 +15,13 @@ public class TestdriverEnvironmentTests {
 
     @Test
     public void testProductionEnvironment() {
-        final String expectedUrl = "http://tromba.io";
-        final String initialUrl  = "http://tromba" + UrlEnvironmentHandler.MAGIC_STRING;
+        final String expectedUrl = "http://leoaureum.co.uk";
+        final String initialUrl  = "http://leoaureum" + UrlEnvironmentHandler.MAGIC_STRING;
 
         List<String> urlList = new ArrayList<String>();
         urlList.add(initialUrl);
         Map<String, String> envDns = new HashMap<String, String>();
-        envDns.put("prod", ".io");
+        envDns.put("prod", ".co.uk");
         EnvironmentHandler environmentHandler = new UrlEnvironmentHandler(urlList, envDns);
         String foundUrl = environmentHandler.getStartUrls("prod").get(0);
         Assert.assertEquals(foundUrl, expectedUrl);
@@ -29,8 +29,8 @@ public class TestdriverEnvironmentTests {
 
     @Test
     public void testStagingEnvironment() {
-        final String expectedUrl = "http://tromba-staging.int";
-        final String initialUrl  = "http://tromba" + UrlEnvironmentHandler.MAGIC_STRING;
+        final String expectedUrl = "http://leoaureum-staging.int";
+        final String initialUrl  = "http://leoaureum" + UrlEnvironmentHandler.MAGIC_STRING;
 
         Map<String, String> envDns = new HashMap<String, String>();
         envDns.put("staging", "-staging.int");
@@ -43,8 +43,8 @@ public class TestdriverEnvironmentTests {
 
     @Test
     public void testProductionStandard() {
-        final String initialUrl  = "http://tromba" + UrlEnvironmentHandler.MAGIC_STRING + ".io";
-        final String expectedUrl = "http://tromba.io";
+        final String initialUrl  = "http://leoaureum" + UrlEnvironmentHandler.MAGIC_STRING + ".co.uk";
+        final String expectedUrl = "http://leoaureum.co.uk";
 
         Map<String, String> envDns = new HashMap<String, String>();
         envDns.put("prod", "");
@@ -57,8 +57,8 @@ public class TestdriverEnvironmentTests {
 
     @Test
     public void testStagingStandard() {
-        final String initialUrl  = "http://tromba"  + UrlEnvironmentHandler.MAGIC_STRING + ".io";
-        final String expectedUrl = "http://tromba.staging.io";
+        final String initialUrl  = "http://leoaureum"  + UrlEnvironmentHandler.MAGIC_STRING + ".co.uk";
+        final String expectedUrl = "http://leoaureum.staging.co.uk";
 
         Map<String, String> envDns = new HashMap<String, String>();
         envDns.put("staging", ".staging");
@@ -72,8 +72,8 @@ public class TestdriverEnvironmentTests {
     @Test
     public void testSetMvt() {
         String mvt = "aer.1";
-        String initialUrl = "http://tromba.io";
-        String expectedUrl = "http://tromba.io/?mvt=" + mvt;
+        String initialUrl = "http://leoaureum.co.uk";
+        String expectedUrl = "http://leoaureum.co.uk/?mvt=" + mvt;
         List<String> mvts = new ArrayList<String>();
         mvts.add(mvt);
 
@@ -86,8 +86,8 @@ public class TestdriverEnvironmentTests {
     public void testSetMvts() {
         String mvt1 = "aer.1";
         String mvt2 = "something.0";
-        String initialUrl = "http://tromba.io";
-        String expectedUrl = "http://tromba.io/?mvt=" + mvt1 + "&mvt=" + mvt2;
+        String initialUrl = "http://leoaureum.co.uk";
+        String expectedUrl = "http://leoaureum.co.uk/?mvt=" + mvt1 + "&mvt=" + mvt2;
         List<String> mvts = new ArrayList<String>();
         mvts.add(mvt1);
         mvts.add(mvt2);
@@ -101,8 +101,8 @@ public class TestdriverEnvironmentTests {
     public void testSetMvtsWithMoreGetParameters() {
         String mvt1 = "aer.1";
         String mvt2 = "something.0";
-        String initialUrl = "http://tromba.io/somewhere/cool/?get=parameter";
-        String expectedUrl = "http://tromba.io/somewhere/cool/?get=parameter&mvt=" + mvt1 + "&mvt=" + mvt2;
+        String initialUrl = "http://leoaureum.co.uk/somewhere/cool/?get=parameter";
+        String expectedUrl = "http://leoaureum.co.uk/somewhere/cool/?get=parameter&mvt=" + mvt1 + "&mvt=" + mvt2;
         List<String> mvts = new ArrayList<String>();
         mvts.add(mvt1);
         mvts.add(mvt2);

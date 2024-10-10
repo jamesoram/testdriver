@@ -24,7 +24,6 @@ public class TestdriverManager {
     public synchronized void setDriver(String method, WebDriver driver, TestdriverLogger logger) {
         TestEssential testEssential = new TestEssential(driver, logger);
         String key = generateKey(method);
-        System.out.println("Adding driver and logger for " + key);
         testEssentials.put(key, testEssential);
     }
 
@@ -86,7 +85,6 @@ public class TestdriverManager {
 
     private String findMethod() {
         Set<String> methods = getDriverSet();
-        System.out.println("methods in set: " + String.join(", ", methods));
 
         StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
         for (StackTraceElement stackTraceElement: stackTraceElements) {
