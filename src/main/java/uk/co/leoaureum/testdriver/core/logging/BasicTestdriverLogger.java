@@ -17,6 +17,7 @@ public class BasicTestdriverLogger implements TestdriverLogger {
      */
     public void log(LogLevel logLevel, String message) {
         LogEntry entry = new LogEntry(logLevel);
+        System.out.println(message);
         entry.setMessage(message);
         entries.add(entry);
     }

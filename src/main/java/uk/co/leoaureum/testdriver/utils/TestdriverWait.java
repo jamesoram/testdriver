@@ -36,27 +36,23 @@ public class TestdriverWait extends WebDriverWait {
      * @param element the element to wait for.
      */
     public void forElementNotStale(final WebElement element) {
-        until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver webDriver) {
-                try {
-                    element.isDisplayed();
-                    return true;
-                } catch (StaleElementReferenceException ex) {
-                    return false;
-                }
+        until((ExpectedCondition<Boolean>) webDriver -> {
+            try {
+                element.isDisplayed();
+                return true;
+            } catch (StaleElementReferenceException ex) {
+                return false;
             }
         });
     }
 
     private ExpectedCondition<Boolean> not(final ExpectedCondition<?> toInvert) {
-        return new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver driver) {
-                try {
-                    Object result = toInvert.apply(driver);
-                    return (result == null || result == Boolean.FALSE);
-                } catch (Exception e) {
-                    return true;
-                }
+        return driver -> {
+            try {
+                Object result = toInvert.apply(driver);
+                return (result == null || result == Boolean.FALSE);
+            } catch (Exception e) {
+                return true;
             }
         };
     }
