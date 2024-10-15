@@ -21,6 +21,8 @@ public class TestdriverConfig {
 
     private static String version;
 
+    private static String platform;
+
     private TestdriverConfig() {
         TestdriverConfigLoader configLoader = new TestdriverConfigLoader();
         grid = configLoader.get("grid");
@@ -30,6 +32,7 @@ public class TestdriverConfig {
         maxRetries = configLoader.get("maxRetries");
         browser = configLoader.get("browser");
         version = configLoader.get("version");
+        platform = configLoader.get("platform");
     }
 
     /**
@@ -71,5 +74,9 @@ public class TestdriverConfig {
 
     public static String getVersion() {
         return version;
+    }
+
+    public static String getPlatform() {
+        return platform;
     }
 }

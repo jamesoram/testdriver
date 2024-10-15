@@ -1,5 +1,7 @@
 package uk.co.leoaureum.testdriver.core;
 
+import uk.co.leoaureum.testdriver.core.logging.LogLevel;
+import uk.co.leoaureum.testdriver.core.logging.TestdriverLogger;
 import uk.co.leoaureum.testdriver.utils.TestdriverConfig;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
@@ -16,23 +18,23 @@ import java.util.Map;
  */
 public class WebDriverFactory {
 
-    private static final TestdriverConfig config = TestdriverConfig.getInstance();
-    private static final String URL = config.getGrid();
-    private static final String browser = config.getBrowser();
-    private static final String version = config.getVersion();
+    public static final String URL = TestdriverConfig.getGrid();
+    public static final String browser = TestdriverConfig.getBrowser();
+    public static final String version = TestdriverConfig.getVersion();
+    public static final String platform = TestdriverConfig.getPlatform();
 
     /**
      * Create a new WebDriver by connecting to the Selenium Grid.
      * @return the newly-created driver.
      */
-    public static WebDriver createInstance(String name) {
+    public static WebDriver createInstance(String name, TestdriverLogger logger) {
         Map<String, String> caps = new HashMap<>();
         caps.put("browserName", browser);
         caps.put("se:name", name);
-//        caps.put("platformName", "platformName");
-        Capabilities capabilities = new DesiredCapabilities(caps);//(browser, version, Platform.ANY);
+        caps.put("platformName", platform);
+        Capabilities capabilities = new DesiredCapabilities(caps);
         try {
-            System.out.println("creating " + browser);
+            logger.log(LogLevel.INFO, "creating " + browser);
             return new RemoteWebDriver(new URL(URL), capabilities);
         } catch (MalformedURLException ex) {
             throw new RuntimeException("Malformed Remote WebDriver URL: " + URL + "\n" + ex.getMessage());
