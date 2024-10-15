@@ -18,9 +18,9 @@ public class TestdriverEnvironmentTests {
         final String expectedUrl = "http://leoaureum.co.uk";
         final String initialUrl  = "http://leoaureum" + UrlEnvironmentHandler.MAGIC_STRING;
 
-        List<String> urlList = new ArrayList<String>();
+        List<String> urlList = new ArrayList<>();
         urlList.add(initialUrl);
-        Map<String, String> envDns = new HashMap<String, String>();
+        Map<String, String> envDns = new HashMap<>();
         envDns.put("prod", ".co.uk");
         EnvironmentHandler environmentHandler = new UrlEnvironmentHandler(urlList, envDns);
         String foundUrl = environmentHandler.getStartUrls("prod").get(0);
@@ -32,9 +32,9 @@ public class TestdriverEnvironmentTests {
         final String expectedUrl = "http://leoaureum-staging.int";
         final String initialUrl  = "http://leoaureum" + UrlEnvironmentHandler.MAGIC_STRING;
 
-        Map<String, String> envDns = new HashMap<String, String>();
+        Map<String, String> envDns = new HashMap<>();
         envDns.put("staging", "-staging.int");
-        List<String> urlList = new ArrayList<String>();
+        List<String> urlList = new ArrayList<>();
         urlList.add(initialUrl);
         EnvironmentHandler environmentHandler = new UrlEnvironmentHandler(urlList, envDns);
         String foundUrl = environmentHandler.getStartUrls("staging").get(0);
@@ -46,9 +46,9 @@ public class TestdriverEnvironmentTests {
         final String initialUrl  = "http://leoaureum" + UrlEnvironmentHandler.MAGIC_STRING + ".co.uk";
         final String expectedUrl = "http://leoaureum.co.uk";
 
-        Map<String, String> envDns = new HashMap<String, String>();
+        Map<String, String> envDns = new HashMap<>();
         envDns.put("prod", "");
-        List<String> urlList = new ArrayList<String>();
+        List<String> urlList = new ArrayList<>();
         urlList.add(initialUrl);
         EnvironmentHandler environmentHandler = new UrlEnvironmentHandler(urlList, envDns);
         String foundUrl = environmentHandler.getStartUrls("").get(0);
@@ -60,9 +60,9 @@ public class TestdriverEnvironmentTests {
         final String initialUrl  = "http://leoaureum"  + UrlEnvironmentHandler.MAGIC_STRING + ".co.uk";
         final String expectedUrl = "http://leoaureum.staging.co.uk";
 
-        Map<String, String> envDns = new HashMap<String, String>();
+        Map<String, String> envDns = new HashMap<>();
         envDns.put("staging", ".staging");
-        List<String> urlList = new ArrayList<String>();
+        List<String> urlList = new ArrayList<>();
         urlList.add(initialUrl);
         EnvironmentHandler environmentHandler = new UrlEnvironmentHandler(urlList, envDns);
         String foundUrl = environmentHandler.getStartUrls("staging").get(0);
@@ -74,7 +74,7 @@ public class TestdriverEnvironmentTests {
         String mvt = "aer.1";
         String initialUrl = "http://leoaureum.co.uk";
         String expectedUrl = "http://leoaureum.co.uk/?mvt=" + mvt;
-        List<String> mvts = new ArrayList<String>();
+        List<String> mvts = new ArrayList<>();
         mvts.add(mvt);
 
         WebDriverUrlMvtHandler urlMvtHandler = new WebDriverUrlMvtHandler(initialUrl);
@@ -88,7 +88,7 @@ public class TestdriverEnvironmentTests {
         String mvt2 = "something.0";
         String initialUrl = "http://leoaureum.co.uk";
         String expectedUrl = "http://leoaureum.co.uk/?mvt=" + mvt1 + "&mvt=" + mvt2;
-        List<String> mvts = new ArrayList<String>();
+        List<String> mvts = new ArrayList<>();
         mvts.add(mvt1);
         mvts.add(mvt2);
 
@@ -103,7 +103,7 @@ public class TestdriverEnvironmentTests {
         String mvt2 = "something.0";
         String initialUrl = "http://leoaureum.co.uk/somewhere/cool/?get=parameter";
         String expectedUrl = "http://leoaureum.co.uk/somewhere/cool/?get=parameter&mvt=" + mvt1 + "&mvt=" + mvt2;
-        List<String> mvts = new ArrayList<String>();
+        List<String> mvts = new ArrayList<>();
         mvts.add(mvt1);
         mvts.add(mvt2);
 

@@ -2,13 +2,19 @@ package uk.co.leoaureum.testdriver.core.logging;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Logger for testdriver tests.
  */
 public class BasicTestdriverLogger implements TestdriverLogger {
 
-    private List<LogEntry> entries = new ArrayList<LogEntry>();
+    private final List<LogEntry> entries = new ArrayList<>();
+    private final String method;
+
+    public BasicTestdriverLogger(String methodName) {
+        this.method = UUID.randomUUID() + " " + methodName;
+    }
 
     /**
      * Adds the received parameters to the LogEntry list.
@@ -16,9 +22,8 @@ public class BasicTestdriverLogger implements TestdriverLogger {
      * @param message the message we expect it to contain
      */
     public void log(LogLevel logLevel, String message) {
-        LogEntry entry = new LogEntry(logLevel);
-        System.out.println(message);
-        entry.setMessage(message);
+        LogEntry entry = new LogEntry(method, logLevel, message);
+        System.out.println(method + " " + message);
         entries.add(entry);
     }
 

@@ -19,7 +19,7 @@ import java.io.File;
  */
 public class TestdriverListener implements IInvokedMethodListener {
 
-    private static final int MAX_WAIT = Integer.valueOf(TestdriverConfig.getInstance().getMaxImplicitWaitInSeconds());
+    private static final int MAX_WAIT = Integer.parseInt(TestdriverConfig.getInstance().getMaxImplicitWaitInSeconds());
     private final TestdriverManager testdriverManager = new TestdriverManager();
 
     /**
@@ -28,8 +28,8 @@ public class TestdriverListener implements IInvokedMethodListener {
      * @param testResult the result of the test.
      */
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
-        TestdriverLogger logger = getLogger();
         String methodName = method.getTestMethod().getMethodName();
+        TestdriverLogger logger = getLogger(methodName);
         if (method.isTestMethod()) {
             WebDriver driver = WebDriverFactory.createInstance(methodName);
 
@@ -63,7 +63,7 @@ public class TestdriverListener implements IInvokedMethodListener {
                     String screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
                     File savedScreenshot = new File("target" + File.separator + uuid + ".jpg");
                     savedScreenshot.createNewFile();
-                    getLogger().log(LogLevel.INFO, screenshot);
+                    getLogger(key).log(LogLevel.INFO, screenshot);
                 }
                 driver.quit();
             } catch (Exception e) {
@@ -76,8 +76,8 @@ public class TestdriverListener implements IInvokedMethodListener {
         }
     }
 
-    private TestdriverLogger getLogger() {
+    private TestdriverLogger getLogger(String methodName) {
         // TODO make this configurable
-        return new BasicTestdriverLogger();
+        return new BasicTestdriverLogger(methodName);
     }
 }

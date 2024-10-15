@@ -13,13 +13,13 @@ public class LogEntry {
 
     private String message;
 
-    public LogEntry(LogLevel level) {
+    public LogEntry(String origin, LogLevel level) {
         timeInMillis = System.currentTimeMillis();
         logLevel = level;
     }
 
-    public LogEntry(LogLevel level, String message) {
-        this(level);
+    public LogEntry(String origin, LogLevel level, String message) {
+        this(origin, level);
         setMessage(message);
     }
 
