@@ -15,6 +15,7 @@ import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.time.Duration;
 
 /**
@@ -60,16 +61,15 @@ public class TestdriverListener implements IInvokedMethodListener {
                 WebDriver driver = testdriverManager.getDriver(key);
                 uuid = testdriverManager.getUuid(key);
                 if (!method.getTestResult().isSuccess()) {
-                    String screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
-                    File savedScreenshot = new File("target" + File.separator + uuid + ".jpg");
-                    if (savedScreenshot.createNewFile()) {
-                        getLogger(key).log(LogLevel.INFO, "File created: " + uuid + ".jpg");
+                    byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+                    String fileName = "target" + File.separator + key + uuid + ".jpg";
+                    try (FileOutputStream fos = new FileOutputStream(fileName)) {
+                        fos.write(screenshot);
+                        getLogger(key).log(LogLevel.INFO, "File created: " + fileName);
                     }
-                    getLogger(key).log(LogLevel.INFO, screenshot);
                 }
                 driver.quit();
             } catch (Exception e) {
-                e.printStackTrace();
                 throw new RuntimeException("An error occurred - Are you pointing to the correct Selenium Grid" +
                         " and is your testdriver.conf correct?\n"
                         + e.getMessage());
