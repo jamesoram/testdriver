@@ -5,30 +5,20 @@ package uk.co.leoaureum.testdriver.core.logging;
  */
 public class LogEntry {
 
-    private LogLevel logLevel;
-
-    private long timeInMillis;
-
-    private String testId;
-
+    private final LogLevel logLevel;
+    private final long timeInMillis;
     private String message;
+    private final String origin;
 
     public LogEntry(String origin, LogLevel level) {
         timeInMillis = System.currentTimeMillis();
         logLevel = level;
+        this.origin = origin;
     }
 
     public LogEntry(String origin, LogLevel level, String message) {
         this(origin, level);
         setMessage(message);
-    }
-
-    public String getTestId() {
-        return testId;
-    }
-
-    public void setTestId(String testId) {
-        this.testId = testId;
     }
 
     public String getMessage() {
@@ -37,5 +27,9 @@ public class LogEntry {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getEntryAsString() {
+        return origin + " " + timeInMillis + " " + " " + message;
     }
 }

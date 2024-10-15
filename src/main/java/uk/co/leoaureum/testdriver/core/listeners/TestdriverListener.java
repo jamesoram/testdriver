@@ -1,8 +1,10 @@
 package uk.co.leoaureum.testdriver.core.listeners;
 
+import org.openqa.selenium.support.events.EventFiringDecorator;
 import uk.co.leoaureum.testdriver.core.TestdriverManager;
 import uk.co.leoaureum.testdriver.core.WebDriverFactory;
 import uk.co.leoaureum.testdriver.core.logging.BasicTestdriverLogger;
+import uk.co.leoaureum.testdriver.core.logging.EventLoggingWebDriver;
 import uk.co.leoaureum.testdriver.core.logging.LogLevel;
 import uk.co.leoaureum.testdriver.core.logging.TestdriverLogger;
 import uk.co.leoaureum.testdriver.utils.TestdriverConfig;
@@ -13,13 +15,14 @@ import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
 import java.io.File;
+import java.time.Duration;
 
 /**
  * TestNG listener to create and destroy drivers before and after the tests are run.
  */
 public class TestdriverListener implements IInvokedMethodListener {
 
-    private static final int MAX_WAIT = Integer.parseInt(TestdriverConfig.getInstance().getMaxImplicitWaitInSeconds());
+    private static final String MAX_WAIT = TestdriverConfig.getInstance().getMaxImplicitWaitInSeconds();
     private final TestdriverManager testdriverManager = new TestdriverManager();
 
     /**
@@ -32,14 +35,11 @@ public class TestdriverListener implements IInvokedMethodListener {
         TestdriverLogger logger = getLogger(methodName);
         if (method.isTestMethod()) {
             WebDriver driver = WebDriverFactory.createInstance(methodName, logger);
+            EventLoggingWebDriver loggingWebDriver = new EventLoggingWebDriver(logger);
 
-//            WebDriver augmentedDriver = new EventFiringDecorator().decorate(new Augmenter().augment(driver));
-
-//            EventLoggingWebDriver loggingWebDriver = new EventLoggingWebDriver(logger);
-//            augmentedDriver.register(loggingWebDriver);
-//            testdriverManager.setDriver(method.getTestMethod().getMethodName(), augmentedDriver, logger);
-            testdriverManager.setDriver(methodName, driver, logger);
-//            augmentedDriver.manage().timeouts().implicitlyWait(MAX_WAIT, TimeUnit.SECONDS);
+            WebDriver augmentedDriver = new EventFiringDecorator<>(loggingWebDriver).decorate(driver);
+            testdriverManager.setDriver(methodName, augmentedDriver, logger);
+            augmentedDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(MAX_WAIT)));
         } else {
             String message = "Method does not appear to be a test method. " + methodName;
             System.err.println(message);
@@ -54,7 +54,7 @@ public class TestdriverListener implements IInvokedMethodListener {
      */
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
-            String uuid = "";
+            String uuid;
             final String key = method.getTestMethod().getMethodName();
             try {
                 WebDriver driver = testdriverManager.getDriver(key);
@@ -62,13 +62,16 @@ public class TestdriverListener implements IInvokedMethodListener {
                 if (!method.getTestResult().isSuccess()) {
                     String screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64);
                     File savedScreenshot = new File("target" + File.separator + uuid + ".jpg");
-                    savedScreenshot.createNewFile();
+                    if (savedScreenshot.createNewFile()) {
+                        getLogger(key).log(LogLevel.INFO, "File created: " + uuid + ".jpg");
+                    }
                     getLogger(key).log(LogLevel.INFO, screenshot);
                 }
                 driver.quit();
             } catch (Exception e) {
                 e.printStackTrace();
-                throw new RuntimeException("An error occurred - Are you pointing to the correct Selenium Grid?\n"
+                throw new RuntimeException("An error occurred - Are you pointing to the correct Selenium Grid" +
+                        " and is your testdriver.conf correct?\n"
                         + e.getMessage());
             } finally {
                 testdriverManager.destroyDriver(key);

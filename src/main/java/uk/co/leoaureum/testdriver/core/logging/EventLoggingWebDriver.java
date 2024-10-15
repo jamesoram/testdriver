@@ -1,126 +1,123 @@
 package uk.co.leoaureum.testdriver.core.logging;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.events.WebDriverListener;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * Wrapper to log WebDriver events.
  */
-public class EventLoggingWebDriver /*implements WebDriverEventListener */{
+public class EventLoggingWebDriver implements WebDriverListener {
 
-    private TestdriverLogger logger;
+    private final TestdriverLogger logger;
 
     public EventLoggingWebDriver(TestdriverLogger logger) {
         this.logger = logger;
     }
 
-    public void beforeNavigateTo(String s, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "Starting navigation to: " + s);
+    @Override
+    public void beforeGet(WebDriver webDriver, String url) {
+        logger.log(LogLevel.INFO, "Starting navigation to: " + url);
     }
 
-    public void afterNavigateTo(String s, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "Navigated to: " + s);
+    @Override
+    public void afterGet(WebDriver webDriver, String url) {
+        logger.log(LogLevel.INFO, "Navigated to: " + url);
     }
 
-    public void beforeNavigateBack(WebDriver webDriver) {
+    @Override
+    public void beforeBack(WebDriver.Navigation navigation) {
         logger.log(LogLevel.INFO, "About to navigate back");
     }
 
-    public void afterNavigateBack(WebDriver webDriver) {
+    @Override
+    public void afterBack(WebDriver.Navigation navigation) {
         logger.log(LogLevel.INFO, "Navigated back");
     }
 
-    public void beforeNavigateForward(WebDriver webDriver) {
+    @Override
+    public void beforeForward(WebDriver.Navigation navigation) {
         logger.log(LogLevel.INFO, "About to navigate forward");
     }
 
-    public void afterNavigateForward(WebDriver webDriver) {
+    @Override
+    public void afterForward(WebDriver.Navigation navigation) {
         logger.log(LogLevel.INFO, "Navigated forward");
     }
 
-    public void beforeFindBy(By by, WebElement webElement, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "About to FindBy: " + by.toString());
+    @Override
+    public void beforeFindElement(WebDriver driver, By locator) {
+        logger.log(LogLevel.INFO, "About to FindBy: " + locator.toString());
     }
 
-    public void afterFindBy(By by, WebElement webElement, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "After to FindBy: " + by.toString());
+    @Override
+    public void afterFindElement(WebDriver driver, By locator, WebElement result) {
+        logger.log(LogLevel.INFO, "After to FindBy: " + locator.toString());
     }
 
-    public void beforeClickOn(WebElement webElement, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "About to click on " + webElement == null ? "" : webElement.toString());
+    @Override
+    public void beforeClick(WebElement webElement) {
+        logger.log(LogLevel.INFO, "About to click on " + (webElement == null ? "" : webElement.toString()));
     }
 
-    public void afterClickOn(WebElement webElement, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "Clicked on " + webElement == null ? "" : webElement.toString());
+    @Override
+    public void afterClick(WebElement webElement) {
+        logger.log(LogLevel.INFO, "Clicked on " + (webElement == null ? "" : webElement.toString()));
     }
 
-    public void beforeChangeValueOf(WebElement webElement, WebDriver webDriver, CharSequence[] charSequences) {
-        logger.log(LogLevel.INFO, "About to change value of " + webElement == null ? "" : webElement.toString());
+    @Override
+    public void beforeSendKeys(WebElement webElement, CharSequence... charSequences) {
+        logger.log(LogLevel.INFO, "About to change value of " + (webElement == null ? "" : webElement.toString()));
     }
 
-    public void afterChangeValueOf(WebElement webElement, WebDriver webDriver, CharSequence[] charSequences) {
-        logger.log(LogLevel.INFO, "Changed value of " + webElement == null ? "" : webElement.toString());
+    @Override
+    public void afterSendKeys(WebElement webElement, CharSequence... charSequences) {
+        logger.log(LogLevel.INFO, "Changed value of " + (webElement == null ? "" : webElement.toString()));
     }
 
-    public void beforeScript(String s, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "About to execute script " + s);
+    public void beforeExecuteScript(WebDriver driver, String script, Object[] args) {
+        logger.log(LogLevel.INFO, "About to execute script " + script);
     }
 
-    public void afterScript(String s, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "Executed script " + s);
+    @Override
+    public void afterExecuteScript(WebDriver driver, String script, Object[] args, Object result) {
+        logger.log(LogLevel.INFO, "Executed script " + script);
     }
 
-    public void beforeSwitchToWindow(String s, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "About to switch to window " + s);
+    @Override
+    public void onError(Object target, Method method, Object[] args, InvocationTargetException e) {
+        logger.log(LogLevel.INFO, "Caught exception: " + e.getMessage());
     }
 
-    public void afterSwitchToWindow(String s, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "Switched to window " + s);
-    }
-
-    public void onException(Throwable throwable, WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "Caught exception: " + throwable.getMessage());
-    }
-
-    public <X> void beforeGetScreenshotAs(OutputType<X> outputType) {
-        logger.log(LogLevel.INFO, "About to get screenshot as: " + outputType.toString());
-    }
-
-    public <X> void afterGetScreenshotAs(OutputType<X> outputType, X x) {
-        logger.log(LogLevel.INFO, "Got screenshot as: " + outputType.toString());
-    }
-
-    public void beforeGetText(WebElement webElement, WebDriver webDriver) {
+    @Override
+    public void beforeGetText(WebElement webElement) {
         logger.log(LogLevel.INFO, "About to get text from element");
     }
 
-    public void afterGetText(WebElement webElement, WebDriver webDriver, String s) {
+    @Override
+    public void afterGetText(WebElement webElement, String s) {
         logger.log(LogLevel.INFO, "Got text from element " + s);
     }
 
-    public void beforeNavigateRefresh(WebDriver driver) {
+    @Override
+    public void beforeRefresh(WebDriver.Navigation navigation) {
         logger.log(LogLevel.INFO, "About to refresh");
     }
 
-    public void afterNavigateRefresh(WebDriver driver) {
+    @Override
+    public void afterRefresh(WebDriver.Navigation navigation) {
         logger.log(LogLevel.INFO, "Finished refreshing");
     }
 
-    public void afterAlertAccept(WebDriver driver) {
-        logger.log(LogLevel.INFO, "Accepted alert");
+    @Override
+    public void afterAlert(WebDriver.TargetLocator targetLocator, Alert alert) {
+        logger.log(LogLevel.INFO, "Received alert");
     }
 
-    public void beforeAlertAccept(WebDriver driver) {
+    @Override
+    public void beforeAlert(WebDriver.TargetLocator targetLocator) {
         logger.log(LogLevel.INFO, "About to accept alert");
-    }
-
-    public void afterAlertDismiss(WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "Dismissed alert");
-    }
-
-    public void beforeAlertDismiss(WebDriver webDriver) {
-        logger.log(LogLevel.INFO, "About to dismiss alert");
     }
 }
