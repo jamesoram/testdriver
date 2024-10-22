@@ -46,6 +46,30 @@ public class TestdriverWait extends WebDriverWait {
         });
     }
 
+    /**
+     * Wait for an element to be invisible.
+     * @param element the element that needs to disappear.
+     */
+    public void forElementNotVisible(WebElement element) {
+        until(ExpectedConditions.invisibilityOf(element));
+    }
+
+    /**
+     * Wait for an element to be clickable.
+     * @param element the element that needs to be clickable.
+     */
+    public void forElementToBeClickable(WebElement element) {
+        until(ExpectedConditions.elementToBeClickable(element));
+    }
+
+    /**
+     * Wait for an element to not be clickable.
+     * @param element The element that needs to stop being clickable.
+     */
+    public void forElementToNotBeClickable(WebElement element) {
+        until(not(ExpectedConditions.elementToBeClickable(element)));
+    }
+    
     private ExpectedCondition<Boolean> not(final ExpectedCondition<?> toInvert) {
         return driver -> {
             try {
