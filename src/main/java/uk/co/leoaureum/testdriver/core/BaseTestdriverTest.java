@@ -8,11 +8,12 @@ import uk.co.leoaureum.testdriver.environment.EnvironmentHandler;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
+import uk.co.leoaureum.testdriver.utils.TestdriverReporter;
 
 /**
  * Base test from which all testdriver tests will inherit.
  */
-@Listeners({ TestdriverListener.class, TestdriverAnnotationTransformer.class })
+@Listeners({ TestdriverListener.class, TestdriverAnnotationTransformer.class, TestdriverReporter.class})
 public class BaseTestdriverTest {
 
     private EnvironmentHandler environmentHandler;

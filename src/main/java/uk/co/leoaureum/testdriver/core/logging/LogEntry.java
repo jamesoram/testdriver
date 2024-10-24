@@ -32,4 +32,16 @@ public class LogEntry {
     public String getEntryAsString() {
         return origin + " " + timeInMillis + " " + " " + message;
     }
+
+    public LogLevel getLogLevel() {
+        return logLevel;
+    }
+
+    public long getTimeInMillis() {
+        return timeInMillis;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
 }
