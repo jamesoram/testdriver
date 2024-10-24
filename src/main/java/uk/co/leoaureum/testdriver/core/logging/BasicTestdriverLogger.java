@@ -38,4 +38,12 @@ public class BasicTestdriverLogger implements TestdriverLogger {
             logger.log(Level.FINE, entry.getEntryAsString());
         }
     }
+
+    public List<LogEntry> getEntries() {
+        return entries;
+    }
+
+    public String getMethod() {
+        return method;
+    }
 }

@@ -4,26 +4,31 @@ import gg.jte.CodeResolver;
 import gg.jte.ContentType;
 import gg.jte.TemplateEngine;
 import gg.jte.TemplateOutput;
-import gg.jte.output.FileOutput;
+import gg.jte.output.StringOutput;
 import gg.jte.resolve.DirectoryCodeResolver;
 import org.testng.IReporter;
 import org.testng.ISuite;
 import org.testng.ISuiteResult;
 import org.testng.ITestContext;
 import org.testng.xml.XmlSuite;
-import uk.co.leoaureum.testdriver.core.logging.LogEntry;
-import uk.co.leoaureum.testdriver.core.logging.LogLevel;
+import uk.co.leoaureum.testdriver.core.logging.TestdriverLogger;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
+import java.io.*;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class TestdriverReporter implements IReporter {
+    private static final List<TestdriverLogger> loggers = new ArrayList<>();
+
+    public static void addLogger(TestdriverLogger logger) {
+        loggers.add(logger);
+    }
 
     @Override
     public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
+
         CodeResolver codeResolver = new DirectoryCodeResolver(Path.of("jte"));
         TemplateEngine templateEngine = TemplateEngine.create(codeResolver, ContentType.Html);
         for (ISuite suite : suites) {
@@ -39,13 +44,14 @@ public class TestdriverReporter implements IReporter {
                 System.out.println("Skipped tests for suite '" + suiteName +
                         "' is:" + tc.getSkippedTests().getAllResults().size());
             }
-            try {
-                TemplateOutput output = new FileOutput(Path.of("target/detailed-report.html"), Charset.defaultCharset());
-                templateEngine.render("report.jte", new LogEntry("testmethod", LogLevel.INFO, "this is a message"), output);
-                templateEngine.clearCache();
+            TemplateOutput output = new StringOutput();
+            templateEngine.render("report.jte", loggers.get(0), output);
 
+            try {
+                BufferedWriter writer = new BufferedWriter(new FileWriter("target" + File.separator + "detailed-report.html"));
+                writer.write(output.toString());
+                writer.close();
             } catch (IOException e) {
-                e.printStackTrace();
                 throw new RuntimeException(e);
             }
         }

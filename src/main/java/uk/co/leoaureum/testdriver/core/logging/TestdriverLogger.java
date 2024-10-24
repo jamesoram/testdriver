@@ -1,5 +1,7 @@
 package uk.co.leoaureum.testdriver.core.logging;
 
+import java.util.List;
+
 /**
  * Interface for all Testdriver loggers.
  */
@@ -16,4 +18,6 @@ public interface TestdriverLogger {
      * Ensure all logging buffers are emptied.
      */
     void write();
+
+    List<LogEntry> getEntries();
 }

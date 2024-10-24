@@ -1,5 +1,6 @@
+@import uk.co.leoaureum.testdriver.core.logging.BasicTestdriverLogger
 @import uk.co.leoaureum.testdriver.core.logging.LogEntry
-@param LogEntry entry
+@param BasicTestdriverLogger logger
 
 <head>
     <meta charset="utf-8">
@@ -12,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <h2>In this report:</h2>
     <ul>
-        <li>${entry.getOrigin()}</li>
+        <li>a test</li>
         <li>another test</li>
     </ul>
     <h2>Class1.test1:</h2>
@@ -25,11 +26,13 @@
             </tr>
         </thead>
         <tbody>
+        @for(LogEntry entry : logger.getEntries())
             <tr>
                 <td>${entry.getTimeInMillis()}</td>
                 <td>${entry.getLogLevel()}</td>
                 <td>${entry.getMessage()}</td>
             </tr>
+        @endfor
         </tbody>
     </table>
 </body>

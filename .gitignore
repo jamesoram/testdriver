@@ -1,6 +1,7 @@
 .idea
 **/*.iml
-
+**.*.class
+jte-classes/
 # build files #
 ######################
 build.properties

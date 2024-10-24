@@ -14,6 +14,8 @@ import org.openqa.selenium.WebDriver;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
+import uk.co.leoaureum.testdriver.utils.TestdriverReporter;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.time.Duration;
@@ -76,6 +78,7 @@ public class TestdriverListener implements IInvokedMethodListener {
             } finally {
                 testdriverManager.destroyDriver(key);
             }
+            TestdriverReporter.addLogger(getLogger(key));
         }
     }
 
