@@ -11,19 +11,20 @@ import org.testng.ISuite;
 import org.testng.ISuiteResult;
 import org.testng.ITestContext;
 import org.testng.xml.XmlSuite;
+import uk.co.leoaureum.testdriver.core.logging.LogEntry;
 import uk.co.leoaureum.testdriver.core.logging.TestdriverLogger;
 
 import java.io.*;
 import java.nio.file.Path;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class TestdriverReporter implements IReporter {
-    private static final List<TestdriverLogger> loggers = new ArrayList<>();
+    private static final Map<String, List<LogEntry>> logs = new HashMap<>();
 
     public static void addLogger(TestdriverLogger logger) {
-        loggers.add(logger);
+        logs.put(logger.getMethod(), logger.getEntries());
     }
 
     @Override
@@ -45,7 +46,7 @@ public class TestdriverReporter implements IReporter {
                         "' is:" + tc.getSkippedTests().getAllResults().size());
             }
             TemplateOutput output = new StringOutput();
-            templateEngine.render("report.jte", loggers.get(0), output);
+            templateEngine.render("report.jte", logs, output);
 
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter("target" + File.separator + "detailed-report.html"));

@@ -19,5 +19,15 @@ public interface TestdriverLogger {
      */
     void write();
 
+    /**
+     * Name of the originating method
+     * @return
+     */
+    String getMethod();
+
+    /**
+     * List of log entries.
+     * @return
+     */
     List<LogEntry> getEntries();
 }

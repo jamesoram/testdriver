@@ -1,6 +1,7 @@
-@import uk.co.leoaureum.testdriver.core.logging.BasicTestdriverLogger
 @import uk.co.leoaureum.testdriver.core.logging.LogEntry
-@param BasicTestdriverLogger logger
+@import java.util.List
+@import java.util.Map
+@param Map<String, List<LogEntry>> logs
 
 <head>
     <meta charset="utf-8">
@@ -26,12 +27,15 @@
             </tr>
         </thead>
         <tbody>
-        @for(LogEntry entry : logger.getEntries())
-            <tr>
-                <td>${entry.getTimeInMillis()}</td>
-                <td>${entry.getLogLevel()}</td>
-                <td>${entry.getMessage()}</td>
-            </tr>
+        @for(String method : logs.keySet())
+            @for(LogEntry entry : logs.get(method))
+                <tr>
+                    <td>${method}</td>
+                    <td>${entry.getTimeInMillis()}</td>
+                    <td>${entry.getLogLevel()}</td>
+                    <td>${entry.getMessage()}</td>
+                </tr>
+            @endfor
         @endfor
         </tbody>
     </table>
