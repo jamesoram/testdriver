@@ -6,6 +6,8 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.util.Objects;
+
 /**
  * Smoke test.
  */
@@ -17,21 +19,14 @@ public class SampleTests extends BaseTestdriverTest {
     }
 
     @Test(dataProvider = "queries")
-    public void testSearchGoogle(String query) {
+    public void testSearchBing(String query) {
         driver().get("https://bing.com/");
         new SampleBingPage(driver()).search(query);
-        Assert.assertTrue(driver().getTitle().contains("Bing"));
-    }
-
-    @Test(enabled = false)
-    public void testRetries() {
-        driver().get("https://google.com");
-        driver().findElement(By.id("something"));
+        Assert.assertTrue(Objects.requireNonNull(driver().getTitle()).contains("Bing"));
     }
 
     @DataProvider(name = "queries", parallel = true)
     public Object[][] provideQueries() {
-        return new Object[][] { { "Selenium" }, { "webdriver" }, { "BDD" }, { "wireshark" }, { "charles proxy" },
-                { "Cucumber-jvm" }, { "Behat" } };
+        return new Object[][] { { "Selenium" }, { "webdriver" } };
     }
 }

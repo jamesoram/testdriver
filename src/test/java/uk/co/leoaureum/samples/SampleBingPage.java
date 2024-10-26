@@ -1,5 +1,6 @@
 package uk.co.leoaureum.samples;
 
+import org.openqa.selenium.Keys;
 import uk.co.leoaureum.testdriver.pages.AbstractPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

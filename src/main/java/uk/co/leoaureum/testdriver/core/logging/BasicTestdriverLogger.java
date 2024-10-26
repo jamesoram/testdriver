@@ -24,10 +24,18 @@ public class BasicTestdriverLogger implements TestdriverLogger {
      * @param logLevel the level of the log (see LogLevel)
      * @param message the message we expect it to contain
      */
-    public void log(LogLevel logLevel, String message) {
+    public void log(LogLevel logLevel, String message, Level level) {
         LogEntry entry = new LogEntry(method, logLevel, message);
-        logger.log(Level.INFO, entry.getEntryAsString());
+        logger.log(level, entry.getEntryAsString());
         entries.add(entry);
+    }
+
+    public void log(LogLevel logLevel, String message) {
+        log(logLevel, message, Level.FINE);
+    }
+
+    public void log(String message) {
+        log(LogLevel.INFO, message, Level.INFO);
     }
 
     /**
