@@ -6,6 +6,8 @@ import gg.jte.TemplateEngine;
 import gg.jte.TemplateOutput;
 import gg.jte.output.StringOutput;
 import gg.jte.resolve.DirectoryCodeResolver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.IReporter;
 import org.testng.ISuite;
 import org.testng.ISuiteResult;
@@ -22,6 +24,7 @@ import java.util.Map;
 
 public class TestdriverReporter implements IReporter {
     private static final Map<String, List<LogEntry>> logs = new HashMap<>();
+    private static final Logger log = LoggerFactory.getLogger(TestdriverReporter.class);
 
     public static void addLogger(TestdriverLogger logger) {
         logs.put(logger.getMethod(), logger.getEntries());

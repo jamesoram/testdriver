@@ -67,7 +67,7 @@ public class TestdriverListener implements IInvokedMethodListener {
                     String fileName = "target" + File.separator + key + uuid + ".jpg";
                     try (FileOutputStream fos = new FileOutputStream(fileName)) {
                         fos.write(screenshot);
-                        getLogger(key).log(LogLevel.INFO, "File created: " + fileName);
+                        getLogger(key).log(LogLevel.ERROR, "File created: " + fileName);
                     }
                 }
                 driver.quit();
@@ -78,7 +78,6 @@ public class TestdriverListener implements IInvokedMethodListener {
             } finally {
                 testdriverManager.destroyDriver(key);
             }
-            TestdriverReporter.addLogger(getLogger(key));
         }
     }
 

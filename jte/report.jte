@@ -19,22 +19,29 @@
     </ul>
     <h2>Class1.test1:</h2>
     <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Time</th>
-                <th scope="col">LogLevel</th>
-                <th scope="col">Message</th>
-            </tr>
-        </thead>
-        <tbody>
         @for(String method : logs.keySet())
-            @for(LogEntry entry : logs.get(method))
+            <thead>
                 <tr>
-                    <td>${method}</td>
+                    <th scope="col">${method}</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">LogLevel</th>
+                    <th scope="col">Message</th>
+                </tr>
+            </thead>
+            <tbody>
+            @for(LogEntry entry : logs.get(method))
+                @if(!entry.getLogLevel().equals("INFO"))
+                    <div class="text-danger">
+                @endif
+                <tr>
+                    <td></td>
                     <td>${entry.getTimeInMillis()}</td>
                     <td>${entry.getLogLevel()}</td>
                     <td>${entry.getMessage()}</td>
                 </tr>
+                @if(entry.getLogLevel().equals("INFO"))
+                        </div>
+                @endif
             @endfor
         @endfor
         </tbody>

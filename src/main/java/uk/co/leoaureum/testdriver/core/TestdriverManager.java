@@ -3,6 +3,7 @@ package uk.co.leoaureum.testdriver.core;
 import uk.co.leoaureum.testdriver.core.logging.TestdriverLogger;
 import uk.co.leoaureum.testdriver.exceptions.DriverNotFoundException;
 import org.openqa.selenium.WebDriver;
+import uk.co.leoaureum.testdriver.utils.TestdriverReporter;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -51,7 +52,9 @@ public class TestdriverManager {
      * @param method the method for which we want to destroy the driver.
      */
     public synchronized void destroyDriver(String method) {
-        getTestEssential(method).getLogger().write();
+        TestdriverLogger logger = getTestEssential(method).getLogger();
+        logger.write();
+        TestdriverReporter.addLogger(logger);
         testEssentials.remove(method);
     }
 
