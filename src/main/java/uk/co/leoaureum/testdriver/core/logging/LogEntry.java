@@ -1,5 +1,10 @@
 package uk.co.leoaureum.testdriver.core.logging;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 /**
  * Entry for the Testdriver logger.
  */
@@ -9,11 +14,17 @@ public class LogEntry {
     private final long timeInMillis;
     private String message;
     private final String origin;
+    private String filename;
 
     public LogEntry(String origin, LogLevel level) {
         timeInMillis = System.currentTimeMillis();
         logLevel = level;
         this.origin = origin;
+    }
+
+    public LogEntry(String origin, LogLevel level, String message, String filename) {
+        this(origin, level, message);
+        this.filename = filename;
     }
 
     public LogEntry(String origin, LogLevel level, String message) {
@@ -41,7 +52,18 @@ public class LogEntry {
         return timeInMillis;
     }
 
+    public String getFormattedTime() {
+        Date date = new Date(timeInMillis);
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss.SSS");
+        formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
+         return "UTC " + formatter.format(date);
+    }
+
     public String getOrigin() {
         return origin;
+    }
+
+    public String getFilename() {
+        return filename;
     }
 }

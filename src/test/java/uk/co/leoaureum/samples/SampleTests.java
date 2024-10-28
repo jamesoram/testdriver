@@ -25,6 +25,13 @@ public class SampleTests extends BaseTestdriverTest {
         Assert.assertTrue(Objects.requireNonNull(driver().getTitle()).contains("Bing"));
     }
 
+    @Test
+    public void testGetAPageAndFail() {
+        driver().get("http://leoaureum.co.uk/");
+        assertTrue(false);
+    }
+
+
     @DataProvider(name = "queries", parallel = true)
     public Object[][] provideQueries() {
         return new Object[][] { { "Selenium" }, { "webdriver" } };

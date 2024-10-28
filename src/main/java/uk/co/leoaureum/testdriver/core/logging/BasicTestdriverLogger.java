@@ -30,6 +30,11 @@ public class BasicTestdriverLogger implements TestdriverLogger {
         entries.add(entry);
     }
 
+    public void log(LogLevel logLevel, String message, String filename) {
+        LogEntry entry = new LogEntry(method, logLevel, message, filename);
+        entries.add(entry);
+    }
+
     public void log(LogLevel logLevel, String message) {
         log(logLevel, message, Level.FINE);
     }

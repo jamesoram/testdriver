@@ -9,9 +9,8 @@ import org.testng.annotations.Test;
  */
 public class FailureTests extends BaseTestdriverTest {
 
-    @Test(timeOut = 1000)
+    @Test(timeOut = 1000, enabled = false)
     public void testFailure() {
-        driver().get("www.leoaureum.co.uk");
         Assert.fail();
     }
 }

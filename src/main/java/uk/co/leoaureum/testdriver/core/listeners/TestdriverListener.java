@@ -14,7 +14,6 @@ import org.openqa.selenium.WebDriver;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
-import uk.co.leoaureum.testdriver.utils.TestdriverReporter;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -64,10 +63,10 @@ public class TestdriverListener implements IInvokedMethodListener {
                 uuid = testdriverManager.getUuid(key);
                 if (!method.getTestResult().isSuccess()) {
                     byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
-                    String fileName = "target" + File.separator + key + uuid + ".jpg";
+                    String fileName = "target" + File.separator + uuid + key + ".jpg";
                     try (FileOutputStream fos = new FileOutputStream(fileName)) {
                         fos.write(screenshot);
-                        getLogger(key).log(LogLevel.ERROR, "File created: " + fileName);
+                        getLogger(key).log(LogLevel.ERROR, "File created: " + fileName, fileName);
                     }
                 }
                 driver.quit();

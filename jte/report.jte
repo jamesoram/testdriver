@@ -1,4 +1,5 @@
 @import uk.co.leoaureum.testdriver.core.logging.LogEntry
+@import uk.co.leoaureum.testdriver.core.logging.LogLevel
 @import java.util.List
 @import java.util.Map
 @param Map<String, List<LogEntry>> logs
@@ -30,17 +31,36 @@
             </thead>
             <tbody>
             @for(LogEntry entry : logs.get(method))
-                @if(!entry.getLogLevel().equals("INFO"))
-                    <div class="text-danger">
-                @endif
-                <tr>
-                    <td></td>
-                    <td>${entry.getTimeInMillis()}</td>
-                    <td>${entry.getLogLevel()}</td>
-                    <td>${entry.getMessage()}</td>
-                </tr>
-                @if(entry.getLogLevel().equals("INFO"))
-                        </div>
+                @if(!entry.getLogLevel().equals(LogLevel.INFO))
+                    <tr>
+                        <td>
+                            <div class="p-3 mb-2 bg-danger text-white">
+                                ${entry.getFormattedTime()}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="p-3 mb-2 bg-danger text-white">
+                                ${entry.getLogLevel()}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="p-3 mb-2 bg-danger text-white">
+                                ${entry.getMessage()}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="p-3 mb-2 bg-danger text-white">
+                                <img src="${entry.getFilename()}" />
+                            </div>
+                        </td>
+                    </tr>
+                @else
+                    <tr>
+                        <td></td>
+                        <td>${entry.getFormattedTime()}</td>
+                        <td>${entry.getLogLevel()}</td>
+                        <td>${entry.getMessage()}</td>
+                    </tr>
                 @endif
             @endfor
         @endfor
