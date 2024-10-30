@@ -4,7 +4,6 @@ import uk.co.leoaureum.testdriver.core.listeners.TestdriverAnnotationTransformer
 import uk.co.leoaureum.testdriver.core.listeners.TestdriverListener;
 import uk.co.leoaureum.testdriver.core.logging.LogLevel;
 import uk.co.leoaureum.testdriver.core.logging.TestdriverLogger;
-import uk.co.leoaureum.testdriver.environment.EnvironmentHandler;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -16,15 +15,10 @@ import uk.co.leoaureum.testdriver.utils.TestdriverReporter;
 @Listeners({ TestdriverListener.class, TestdriverAnnotationTransformer.class, TestdriverReporter.class})
 public class BaseTestdriverTest {
 
-    private EnvironmentHandler environmentHandler;
-    private TestdriverManager testdriverManager = new TestdriverManager();
+    private final TestdriverManager testdriverManager = new TestdriverManager();
 
     public BaseTestdriverTest() {
 
-    }
-
-    public BaseTestdriverTest(EnvironmentHandler environmentHandler) {
-        this.environmentHandler = environmentHandler;
     }
 
     /**

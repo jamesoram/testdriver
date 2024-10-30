@@ -14,17 +14,11 @@ public class LogEntry {
     private final long timeInMillis;
     private String message;
     private final String origin;
-    private String filename;
 
     public LogEntry(String origin, LogLevel level) {
         timeInMillis = System.currentTimeMillis();
         logLevel = level;
         this.origin = origin;
-    }
-
-    public LogEntry(String origin, LogLevel level, String message, String filename) {
-        this(origin, level, message);
-        this.filename = filename;
     }
 
     public LogEntry(String origin, LogLevel level, String message) {
@@ -64,6 +58,6 @@ public class LogEntry {
     }
 
     public String getFilename() {
-        return filename;
+        return getOrigin() + ".jpg";
     }
 }

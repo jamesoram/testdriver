@@ -16,7 +16,7 @@ public class BasicTestdriverLogger implements TestdriverLogger {
     private final String method;
 
     public BasicTestdriverLogger(String methodName) {
-        this.method = UUID.randomUUID() + " " + methodName;
+        this.method = methodName + "_" + UUID.randomUUID();
     }
 
     /**
@@ -27,11 +27,6 @@ public class BasicTestdriverLogger implements TestdriverLogger {
     public void log(LogLevel logLevel, String message, Level level) {
         LogEntry entry = new LogEntry(method, logLevel, message);
         logger.log(level, entry.getEntryAsString());
-        entries.add(entry);
-    }
-
-    public void log(LogLevel logLevel, String message, String filename) {
-        LogEntry entry = new LogEntry(method, logLevel, message, filename);
         entries.add(entry);
     }
 

@@ -3,8 +3,6 @@ package uk.co.leoaureum.testdriver.core;
 import uk.co.leoaureum.testdriver.core.logging.TestdriverLogger;
 import org.openqa.selenium.WebDriver;
 
-import java.util.UUID;
-
 /**
  * Data class for the essential components of a Testdriver test.
  */
@@ -12,10 +10,10 @@ public class TestEssential {
 
     private WebDriver driver;
     private TestdriverLogger logger;
-    private UUID uuid;
+    private String uuid;
 
     public TestEssential(WebDriver driver, TestdriverLogger logger) {
-        this.uuid = UUID.randomUUID();
+        this.uuid = logger.getMethod();
         this.driver = driver;
         this.logger = logger;
     }
@@ -41,6 +39,6 @@ public class TestEssential {
      * @return a String with the UUID.
      */
     public String getUuid() {
-        return uuid.toString();
+        return uuid;
     }
 }

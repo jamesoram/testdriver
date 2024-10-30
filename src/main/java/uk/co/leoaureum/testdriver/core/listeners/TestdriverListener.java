@@ -63,10 +63,10 @@ public class TestdriverListener implements IInvokedMethodListener {
                 uuid = testdriverManager.getUuid(key);
                 if (!method.getTestResult().isSuccess()) {
                     byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
-                    String fileName = "target" + File.separator + uuid + key + ".jpg";
+                    String fileName = "target" + File.separator + uuid + ".jpg";
                     try (FileOutputStream fos = new FileOutputStream(fileName)) {
                         fos.write(screenshot);
-                        getLogger(key).log(LogLevel.ERROR, "File created: " + fileName, fileName);
+                        getLogger(key).log(LogLevel.ERROR, "File created: " + fileName);
                     }
                 }
                 driver.quit();

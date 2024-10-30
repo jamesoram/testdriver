@@ -1,36 +1,54 @@
 @import uk.co.leoaureum.testdriver.core.logging.LogEntry
 @import uk.co.leoaureum.testdriver.core.logging.LogLevel
-@import java.util.List
-@import java.util.Map
-@param Map<String, List<LogEntry>> logs
+@import uk.co.leoaureum.testdriver.core.logging.TestdriverResults
+@param TestdriverResults results
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Test Report</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
+<div class="mx-auto">
     <h1>Detailed Report</h1>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
     <h2>In this report:</h2>
     <ul>
-        <li>a test</li>
-        <li>another test</li>
+        @for(String method : results.getMethods())
+            <li>
+                <a href="#${method}">${method}</a>
+                @if(results.isFailed(method))
+                    <em class="text-danger">✕</em>
+                @else
+                    <em class="text-success">✓</em>
+                @endif
+            </li>
+        @endfor
     </ul>
-    <h2>Class1.test1:</h2>
-    <table class="table">
-        @for(String method : logs.keySet())
+
+    @for(String method : results.getMethods())
+        @if(results.isFailed(method))
+            <div class="bg-danger" id="${method}">
+        @else
+            <div class="bg-success" id="${method}">
+        @endif
+
+        <h2>${method}</h2>
+        <table class="table">
             <thead>
-                <tr>
-                    <th scope="col">${method}</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">LogLevel</th>
-                    <th scope="col">Message</th>
-                </tr>
+            <tr>
+                <th scope="col">Time</th>
+                <th scope="col">LogLevel</th>
+                <th scope="col">Message</th>
+                <th scope="col">Screenshot</th>
+            </tr>
             </thead>
             <tbody>
-            @for(LogEntry entry : logs.get(method))
+            @for(LogEntry entry : results.getEntries(method))
                 @if(!entry.getLogLevel().equals(LogLevel.INFO))
                     <tr>
                         <td>
@@ -50,20 +68,25 @@
                         </td>
                         <td>
                             <div class="p-3 mb-2 bg-danger text-white">
-                                <img src="${entry.getFilename()}" />
+                                <a href="${entry.getFilename()}">
+                                    <img width="300" height="200" src="${entry.getFilename()}"/>
+                                </a>
                             </div>
                         </td>
                     </tr>
                 @else
                     <tr>
-                        <td></td>
                         <td>${entry.getFormattedTime()}</td>
                         <td>${entry.getLogLevel()}</td>
                         <td>${entry.getMessage()}</td>
+                        <td></td>
                     </tr>
                 @endif
             @endfor
-        @endfor
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+        </div>
+        </div>
+    @endfor
+</div>
 </body>
