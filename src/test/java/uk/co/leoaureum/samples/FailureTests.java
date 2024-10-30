@@ -13,4 +13,10 @@ public class FailureTests extends BaseTestdriverTest {
     public void testFailure() {
         Assert.fail();
     }
+
+    @Test(enabled = false)
+    public void testGetAPageAndFail() {
+        driver().get("http://leoaureum.co.uk/");
+        assertTrue(false);
+    }
 }
