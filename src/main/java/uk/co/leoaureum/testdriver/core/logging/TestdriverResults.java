@@ -1,5 +1,7 @@
 package uk.co.leoaureum.testdriver.core.logging;
 
+import org.testng.ISuite;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,10 +29,14 @@ public class TestdriverResults {
     public boolean isFailed(String method) {
         List<LogEntry> entries = logs.get(method);
         for (LogEntry entry : entries) {
-            if (!entry.getLogLevel().equals(LogLevel.INFO)) {
+            if (entry.getLogLevel().equals(LogLevel.ERROR)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public void addInfo(List<ISuite> results) {
+
     }
 }

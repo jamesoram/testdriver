@@ -56,8 +56,11 @@ public class TestdriverListener implements IInvokedMethodListener {
      */
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
+            method.getTestMethod().getId();
+
             String uuid;
             final String key = method.getTestMethod().getMethodName();
+            getLogger(key).setId(method.getTestMethod().getId());
             try {
                 WebDriver driver = testdriverManager.getDriver(key);
                 uuid = testdriverManager.getUuid(key);

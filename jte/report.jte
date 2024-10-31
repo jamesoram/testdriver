@@ -42,23 +42,17 @@
             <thead>
             <tr>
                 <th scope="col">Time</th>
-                <th scope="col">LogLevel</th>
                 <th scope="col">Message</th>
                 <th scope="col">Screenshot</th>
             </tr>
             </thead>
             <tbody>
             @for(LogEntry entry : results.getEntries(method))
-                @if(!entry.getLogLevel().equals(LogLevel.INFO))
+                @if(entry.getLogLevel().equals(LogLevel.ERROR))
                     <tr>
                         <td>
                             <div class="p-3 mb-2 bg-danger text-white">
                                 ${entry.getFormattedTime()}
-                            </div>
-                        </td>
-                        <td>
-                            <div class="p-3 mb-2 bg-danger text-white">
-                                ${entry.getLogLevel()}
                             </div>
                         </td>
                         <td>
@@ -77,7 +71,6 @@
                 @else
                     <tr>
                         <td>${entry.getFormattedTime()}</td>
-                        <td>${entry.getLogLevel()}</td>
                         <td>${entry.getMessage()}</td>
                         <td></td>
                     </tr>

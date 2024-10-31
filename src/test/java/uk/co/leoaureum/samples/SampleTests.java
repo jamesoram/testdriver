@@ -22,7 +22,7 @@ public class SampleTests extends BaseTestdriverTest {
     public void testSearchBing(String query) {
         driver().get("https://bing.com/");
         new SampleBingPage(driver()).search(query);
-        Assert.assertTrue(Objects.requireNonNull(driver().getTitle()).contains("Bing"));
+        assertTrue(Objects.requireNonNull(driver().getTitle()).contains("Bing"));
     }
 
     @DataProvider(name = "queries", parallel = true)

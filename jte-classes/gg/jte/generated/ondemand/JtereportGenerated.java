@@ -5,7 +5,7 @@ import uk.co.leoaureum.testdriver.core.logging.TestdriverResults;
 @SuppressWarnings("unchecked")
 public final class JtereportGenerated {
 	public static final String JTE_NAME = "report.jte";
-	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,3,3,3,20,20,20,22,22,22,22,22,22,22,23,23,25,25,27,27,29,29,32,32,33,33,34,34,34,34,34,34,34,34,34,35,35,36,36,36,36,36,36,36,36,36,37,37,39,39,39,50,50,51,51,55,55,55,60,60,60,65,65,65,70,70,70,70,70,70,70,70,70,71,71,71,71,71,71,71,71,71,76,76,78,78,78,79,79,79,80,80,80,83,83,84,84,89,89,92,92,92,3,3,3,3};
+	public static final int[] JTE_LINE_INFO = {0,0,1,2,3,3,3,3,20,20,20,22,22,22,22,22,22,22,23,23,25,25,27,27,29,29,32,32,33,33,34,34,34,34,34,34,34,34,34,35,35,36,36,36,36,36,36,36,36,36,37,37,39,39,39,49,49,50,50,54,54,54,59,59,59,64,64,64,64,64,64,64,64,64,65,65,65,65,65,65,65,65,65,70,70,72,72,72,73,73,73,76,76,77,77,82,82,85,85,85,3,3,3,3};
 	public static void render(gg.jte.html.HtmlTemplateOutput jteOutput, gg.jte.html.HtmlInterceptor jteHtmlInterceptor, TestdriverResults results) {
 		jteOutput.writeContent("\n<head>\n    <meta charset=\"utf-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n    <title>Test Report</title>\n    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\"\n          integrity=\"sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH\" crossorigin=\"anonymous\">\n</head>\n<body>\n<div class=\"mx-auto\">\n    <h1>Detailed Report</h1>\n    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js\"\n            integrity=\"sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz\"\n            crossorigin=\"anonymous\"></script>\n    <h2>In this report:</h2>\n    <ul>\n        ");
 		for (String method : results.getMethods()) {
@@ -53,16 +53,13 @@ public final class JtereportGenerated {
 			jteOutput.writeContent("\n\n        <h2>");
 			jteOutput.setContext("h2", null);
 			jteOutput.writeUserContent(method);
-			jteOutput.writeContent("</h2>\n        <table class=\"table\">\n            <thead>\n            <tr>\n                <th scope=\"col\">Time</th>\n                <th scope=\"col\">LogLevel</th>\n                <th scope=\"col\">Message</th>\n                <th scope=\"col\">Screenshot</th>\n            </tr>\n            </thead>\n            <tbody>\n            ");
+			jteOutput.writeContent("</h2>\n        <table class=\"table\">\n            <thead>\n            <tr>\n                <th scope=\"col\">Time</th>\n                <th scope=\"col\">Message</th>\n                <th scope=\"col\">Screenshot</th>\n            </tr>\n            </thead>\n            <tbody>\n            ");
 			for (LogEntry entry : results.getEntries(method)) {
 				jteOutput.writeContent("\n                ");
-				if (!entry.getLogLevel().equals(LogLevel.INFO)) {
+				if (entry.getLogLevel().equals(LogLevel.ERROR)) {
 					jteOutput.writeContent("\n                    <tr>\n                        <td>\n                            <div class=\"p-3 mb-2 bg-danger text-white\">\n                                ");
 					jteOutput.setContext("div", null);
 					jteOutput.writeUserContent(entry.getFormattedTime());
-					jteOutput.writeContent("\n                            </div>\n                        </td>\n                        <td>\n                            <div class=\"p-3 mb-2 bg-danger text-white\">\n                                ");
-					jteOutput.setContext("div", null);
-					jteOutput.writeUserContent(entry.getLogLevel());
 					jteOutput.writeContent("\n                            </div>\n                        </td>\n                        <td>\n                            <div class=\"p-3 mb-2 bg-danger text-white\">\n                                ");
 					jteOutput.setContext("div", null);
 					jteOutput.writeUserContent(entry.getMessage());
@@ -89,9 +86,6 @@ public final class JtereportGenerated {
 					jteOutput.writeContent("\n                    <tr>\n                        <td>");
 					jteOutput.setContext("td", null);
 					jteOutput.writeUserContent(entry.getFormattedTime());
-					jteOutput.writeContent("</td>\n                        <td>");
-					jteOutput.setContext("td", null);
-					jteOutput.writeUserContent(entry.getLogLevel());
 					jteOutput.writeContent("</td>\n                        <td>");
 					jteOutput.setContext("td", null);
 					jteOutput.writeUserContent(entry.getMessage());

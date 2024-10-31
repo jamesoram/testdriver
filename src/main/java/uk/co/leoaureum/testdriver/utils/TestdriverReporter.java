@@ -20,15 +20,14 @@ import java.util.List;
 import java.util.Map;
 
 public class TestdriverReporter implements IReporter {
-    private static final TestdriverResults results = new TestdriverResults();
+    private static final TestdriverResults tdResults = new TestdriverResults();
 
     public static void addLogger(TestdriverLogger logger) {
-        results.addLogs(logger.getMethod(), logger.getEntries());
+        tdResults.addLogs(logger.getMethod(), logger.getEntries());
     }
 
     @Override
     public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> suites, String outputDirectory) {
-
         CodeResolver codeResolver = new DirectoryCodeResolver(Path.of("jte"));
         TemplateEngine templateEngine = TemplateEngine.create(codeResolver, ContentType.Html);
         for (ISuite suite : suites) {
@@ -44,8 +43,9 @@ public class TestdriverReporter implements IReporter {
                 System.out.println("Skipped tests for suite '" + suiteName +
                         "' is:" + tc.getSkippedTests().getAllResults().size());
             }
+            tdResults.addInfo(suites);
             TemplateOutput output = new StringOutput();
-            templateEngine.render("report.jte", TestdriverReporter.results, output);
+            templateEngine.render("report.jte", tdResults, output);
 
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter("target" + File.separator + "detailed-report.html"));

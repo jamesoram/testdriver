@@ -14,6 +14,7 @@ public class BasicTestdriverLogger implements TestdriverLogger {
     private static final Logger logger = Logger.getLogger(BasicTestdriverLogger.class.getName());
     private final List<LogEntry> entries = new ArrayList<>();
     private final String method;
+    private String id;
 
     public BasicTestdriverLogger(String methodName) {
         this.method = methodName + "_" + UUID.randomUUID();
@@ -53,5 +54,9 @@ public class BasicTestdriverLogger implements TestdriverLogger {
 
     public String getMethod() {
         return method;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

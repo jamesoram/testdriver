@@ -1,5 +1,6 @@
 package uk.co.leoaureum.testdriver.core;
 
+import org.testng.annotations.BeforeMethod;
 import uk.co.leoaureum.testdriver.core.listeners.TestdriverAnnotationTransformer;
 import uk.co.leoaureum.testdriver.core.listeners.TestdriverListener;
 import uk.co.leoaureum.testdriver.core.logging.LogLevel;
@@ -8,6 +9,8 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import uk.co.leoaureum.testdriver.utils.TestdriverReporter;
+
+import java.lang.reflect.Method;
 
 /**
  * Base test from which all testdriver tests will inherit.
@@ -43,7 +46,11 @@ public class BaseTestdriverTest {
      */
     public void assertTrue(boolean condition) {
         logger().log(LogLevel.ASSERTION, "Asserting that " + condition + " is true");
-        Assert.assertTrue(condition);
+        try {
+            Assert.assertTrue(condition);
+        } catch (Exception e) {
+            logger().log(LogLevel.ERROR, "Asserting that " + condition + " is true");
+        }
     }
 
     /**
