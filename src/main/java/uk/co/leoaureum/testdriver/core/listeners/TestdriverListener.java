@@ -41,11 +41,13 @@ public class TestdriverListener implements IInvokedMethodListener {
 
             WebDriver augmentedDriver = new EventFiringDecorator<>(loggingWebDriver).decorate(driver);
             testdriverManager.setDriver(methodName, augmentedDriver, logger);
+            method.getTestMethod().setId(testdriverManager.getUuid(methodName));
+            logger.setId(method.getTestMethod().getId());
             augmentedDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(MAX_WAIT)));
         } else {
             String message = "Method does not appear to be a test method. " + methodName;
             System.err.println(message);
-            logger.log(LogLevel.INFO, message);
+            logger.log(LogLevel.ERROR, message);
         }
     }
 
@@ -56,11 +58,8 @@ public class TestdriverListener implements IInvokedMethodListener {
      */
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
-            method.getTestMethod().getId();
-
             String uuid;
             final String key = method.getTestMethod().getMethodName();
-            getLogger(key).setId(method.getTestMethod().getId());
             try {
                 WebDriver driver = testdriverManager.getDriver(key);
                 uuid = testdriverManager.getUuid(key);

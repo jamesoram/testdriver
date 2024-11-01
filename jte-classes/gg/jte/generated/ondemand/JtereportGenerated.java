@@ -56,7 +56,7 @@ public final class JtereportGenerated {
 			jteOutput.writeContent("</h2>\n        <table class=\"table\">\n            <thead>\n            <tr>\n                <th scope=\"col\">Time</th>\n                <th scope=\"col\">Message</th>\n                <th scope=\"col\">Screenshot</th>\n            </tr>\n            </thead>\n            <tbody>\n            ");
 			for (LogEntry entry : results.getEntries(method)) {
 				jteOutput.writeContent("\n                ");
-				if (entry.getLogLevel().equals(LogLevel.ERROR)) {
+				if (entry.getLogLevel().equals(LogLevel.ASSERTION)) {
 					jteOutput.writeContent("\n                    <tr>\n                        <td>\n                            <div class=\"p-3 mb-2 bg-danger text-white\">\n                                ");
 					jteOutput.setContext("div", null);
 					jteOutput.writeUserContent(entry.getFormattedTime());

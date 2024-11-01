@@ -20,10 +20,11 @@ import java.util.List;
 import java.util.Map;
 
 public class TestdriverReporter implements IReporter {
+
     private static final TestdriverResults tdResults = new TestdriverResults();
 
     public static void addLogger(TestdriverLogger logger) {
-        tdResults.addLogs(logger.getMethod(), logger.getEntries());
+        tdResults.addLogs(logger.getMethod(), logger.getEntries(), logger.getId());
     }
 
     @Override

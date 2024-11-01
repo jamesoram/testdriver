@@ -32,4 +32,6 @@ public interface TestdriverLogger {
     List<LogEntry> getEntries();
 
     void setId(String id);
+
+    String getId();
 }

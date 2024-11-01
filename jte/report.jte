@@ -18,10 +18,10 @@
             crossorigin="anonymous"></script>
     <h2>In this report:</h2>
     <ul>
-        @for(String method : results.getMethods())
+        @for (String method : results.getMethods())
             <li>
                 <a href="#${method}">${method}</a>
-                @if(results.isFailed(method))
+                @if (results.isFailed(method))
                     <em class="text-danger">✕</em>
                 @else
                     <em class="text-success">✓</em>
@@ -30,8 +30,8 @@
         @endfor
     </ul>
 
-    @for(String method : results.getMethods())
-        @if(results.isFailed(method))
+    @for (String method : results.getMethods())
+        @if (results.isFailed(method))
             <div class="bg-danger" id="${method}">
         @else
             <div class="bg-success" id="${method}">
@@ -47,8 +47,8 @@
             </tr>
             </thead>
             <tbody>
-            @for(LogEntry entry : results.getEntries(method))
-                @if(entry.getLogLevel().equals(LogLevel.ERROR))
+            @for (LogEntry entry : results.getEntries(method))
+                @if (entry.getLogLevel().equals(LogLevel.ASSERTION))
                     <tr>
                         <td>
                             <div class="p-3 mb-2 bg-danger text-white">
