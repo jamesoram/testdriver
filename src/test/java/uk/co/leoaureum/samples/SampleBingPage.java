@@ -18,7 +18,7 @@ public class SampleBingPage extends AbstractPage {
         super(driver);
     }
 
-    public SampleBingPage search(String query) {
+    public SampleBingPage type(String query) {
         wait.forElementVisible(searchInput);
         searchInput.sendKeys(query);
         return this;
