@@ -33,7 +33,7 @@ public class TestdriverListener implements IInvokedMethodListener {
      * @param testResult the result of the test.
      */
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
-        String methodName = method.getTestMethod().getMethodName();
+        String methodName = TestdriverManager.generateKey(method.getTestMethod().getMethodName());
         TestdriverLogger logger = getLogger(methodName);
         if (method.isTestMethod()) {
             WebDriver driver = WebDriverFactory.createInstance(methodName, logger);
@@ -59,7 +59,7 @@ public class TestdriverListener implements IInvokedMethodListener {
     public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
         if (method.isTestMethod()) {
             String uuid;
-            final String key = method.getTestMethod().getMethodName();
+            final String key = TestdriverManager.generateKey(method.getTestMethod().getMethodName());
             try {
                 WebDriver driver = testdriverManager.getDriver(key);
                 uuid = testdriverManager.getUuid(key);

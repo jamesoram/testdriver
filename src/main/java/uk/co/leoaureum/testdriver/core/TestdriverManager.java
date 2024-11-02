@@ -71,7 +71,7 @@ public class TestdriverManager {
      * @return the correct driver.
      */
     public WebDriver driver() {
-        return getDriver(findMethod());
+        return getDriver(findKey());
     }
 
     /**
@@ -79,27 +79,27 @@ public class TestdriverManager {
      * @return the correct logger.
      */
     public TestdriverLogger logger() {
-        return getLogger(findMethod());
+        return getLogger(findKey());
     }
 
     private TestdriverLogger getLogger(String method) {
         return getTestEssential(method).getLogger();
     }
 
-    private String findMethod() {
-        Set<String> methods = getDriverSet();
+    private String findKey() {
+        Set<String> keys = getDriverSet();
 
         StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
         for (StackTraceElement stackTraceElement: stackTraceElements) {
-            String methodName = stackTraceElement.getMethodName();
-            if (methods.contains(generateKey(methodName))) {
-                return methodName;
+            String currentKey = TestdriverManager.generateKey(stackTraceElement.getMethodName());
+            if (keys.contains(generateKey(currentKey))) {
+                return currentKey;
             }
         }
         throw new DriverNotFoundException();
     }
 
-    private String generateKey(String method) {
+    public synchronized static String generateKey(String method) {
         return method + Thread.currentThread().getId();
     }
 

@@ -34,7 +34,6 @@ public class TestdriverResults {
         for (ISuite suite : suites) {
             for (ITestNGMethod tnMethod : suite.getAllMethods()) {
                 if (tnMethod.getId().equals(id) && method.contains(tnMethod.getMethodName())) {
-                    System.out.println("Found id " + id);
                     for (ISuiteResult result : suite.getResults().values()) {
                         Set<ITestResult> testResult = result.getTestContext().getFailedTests().getResults(tnMethod);
                         for (ITestResult result1 : testResult) {

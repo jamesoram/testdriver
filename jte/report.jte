@@ -48,7 +48,7 @@
             </thead>
             <tbody>
             @for (LogEntry entry : results.getEntries(method))
-                @if (entry.getLogLevel().equals(LogLevel.ASSERTION))
+                @if (entry.getLogLevel().equals(LogLevel.ASSERTION) && results.isFailed(method))
                     <tr>
                         <td>
                             <div class="p-3 mb-2 bg-danger text-white">
