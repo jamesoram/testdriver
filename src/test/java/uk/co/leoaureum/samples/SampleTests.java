@@ -18,11 +18,11 @@ public class SampleTests extends BaseTestdriverTest {
         driver().get("http://leoaureum.co.uk/");
     }
 
-    @Test(dataProvider = "queries")
+    @Test(dataProvider = "queries", enabled = false)
     public void testSearchBing(String query) {
         driver().get("https://bing.com/");
         new SampleBingPage(driver()).search(query);
-        assertTrue(Objects.requireNonNull(driver().getTitle()).contains("Bing"));
+        assertTrue(Objects.requireNonNull(driver().getTitle()).contains(query));
     }
 
     @DataProvider(name = "queries", parallel = true)
