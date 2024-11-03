@@ -31,7 +31,15 @@ public interface TestdriverLogger {
      */
     List<LogEntry> getEntries();
 
+    /**
+     * Set identifier to find a logger.
+     * @param id
+     */
     void setId(String id);
 
+    /**
+     * Get the logger's id.
+     * @return logger's id.
+     */
     String getId();
 }

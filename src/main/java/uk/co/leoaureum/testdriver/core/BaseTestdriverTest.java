@@ -1,6 +1,5 @@
 package uk.co.leoaureum.testdriver.core;
 
-import org.testng.annotations.BeforeMethod;
 import uk.co.leoaureum.testdriver.core.listeners.TestdriverAnnotationTransformer;
 import uk.co.leoaureum.testdriver.core.listeners.TestdriverListener;
 import uk.co.leoaureum.testdriver.core.logging.LogLevel;
@@ -9,8 +8,6 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import uk.co.leoaureum.testdriver.utils.TestdriverReporter;
-
-import java.lang.reflect.Method;
 
 /**
  * Base test from which all testdriver tests will inherit.

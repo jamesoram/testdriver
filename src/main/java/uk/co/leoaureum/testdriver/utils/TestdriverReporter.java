@@ -46,7 +46,9 @@ public class TestdriverReporter implements IReporter {
             }
             tdResults.addInfo(suites);
             TemplateOutput output = new StringOutput();
-            templateEngine.render("report.jte", tdResults, output);
+            if (new File("jte/report.jte").exists()) {
+                templateEngine.render("report.jte", tdResults, output);
+            }
 
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter("target" + File.separator + "detailed-report.html"));
