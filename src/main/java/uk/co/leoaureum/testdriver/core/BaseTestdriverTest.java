@@ -62,4 +62,12 @@ public class BaseTestdriverTest {
         logger().log(LogLevel.ASSERTION, "Asserting that " + expected + " equals " + found);
         Assert.assertEquals(expected, found);
     }
+
+    /**
+     * Get the test id for the current tests.
+     * @return The test ID.
+     */
+    public String getTestId() {
+        return testdriverManager.getUuid();
+    }
 }

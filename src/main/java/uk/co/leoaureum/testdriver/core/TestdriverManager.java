@@ -48,6 +48,14 @@ public class TestdriverManager {
     }
 
     /**
+     * Get the UUID for the running test.
+     * @return String containing the correct UUID.
+     */
+    public String getUuid() {
+        return getUuid(findKey());
+    }
+
+    /**
      * Destroy the driver for a method.
      * @param method the method for which we want to destroy the driver.
      */

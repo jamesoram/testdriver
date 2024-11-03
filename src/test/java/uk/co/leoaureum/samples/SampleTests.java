@@ -1,12 +1,9 @@
 package uk.co.leoaureum.samples;
 
 import uk.co.leoaureum.testdriver.core.BaseTestdriverTest;
-import org.openqa.selenium.By;
-import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Objects;
 
 /**
  * Smoke test.
@@ -16,6 +13,7 @@ public class SampleTests extends BaseTestdriverTest {
     @Test
     public void testGetAPage() {
         driver().get("http://leoaureum.co.uk/");
+        System.out.println(getTestId());
     }
 
     @Test(dataProvider = "queries")
