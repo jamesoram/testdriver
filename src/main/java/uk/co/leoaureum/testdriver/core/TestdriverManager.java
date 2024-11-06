@@ -99,7 +99,7 @@ public class TestdriverManager {
 
         StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
         for (StackTraceElement stackTraceElement: stackTraceElements) {
-            String currentKey = TestdriverManager.generateKey(stackTraceElement.getMethodName());
+            String currentKey = generateKey(stackTraceElement.getMethodName());
             if (keys.contains(generateKey(currentKey))) {
                 return currentKey;
             }

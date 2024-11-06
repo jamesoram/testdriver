@@ -9,18 +9,18 @@ import org.openqa.selenium.support.FindBy;
 /**
  * Sample page object for Google search
  */
-public class SampleBingPage extends AbstractPage {
+public class SampleDuckDuckGoPage extends AbstractPage {
 
-    @FindBy(id = "sb_form_q")
+    @FindBy(id = "searchbox_input")
     private WebElement searchInput;
 
-    public SampleBingPage(WebDriver driver) {
+    public SampleDuckDuckGoPage(WebDriver driver) {
         super(driver);
     }
 
-    public SampleBingPage type(String query) {
+    public SampleDuckDuckGoResultsPage type(String query) {
         wait.forElementVisible(searchInput);
-        searchInput.sendKeys(query);
-        return this;
+        searchInput.sendKeys(query + Keys.ENTER);
+        return new SampleDuckDuckGoResultsPage(driver);
     }
 }
