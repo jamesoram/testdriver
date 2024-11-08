@@ -73,7 +73,8 @@ public class TestdriverListener implements IInvokedMethodListener {
                 }
                 driver.quit();
             } catch (Exception e) {
-                throw new RuntimeException("An error occurred - Are you pointing to the correct Selenium Grid" +
+                e.printStackTrace();
+                System.err.println("An error occurred - Are you pointing to the correct Selenium Grid" +
                         " and is your testdriver.conf correct?\n"
                         + e.getMessage());
             } finally {
