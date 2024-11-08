@@ -1,6 +1,7 @@
 package uk.co.leoaureum.testdriver.core.logging;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -12,7 +13,7 @@ import java.util.logging.Logger;
 public class BasicTestdriverLogger implements TestdriverLogger {
 
     private static final Logger logger = Logger.getLogger(BasicTestdriverLogger.class.getName());
-    private final List<LogEntry> entries = new ArrayList<>();
+    private final List<LogEntry> entries = Collections.synchronizedList(new ArrayList<>());
     private final String method;
     private String id;
 
@@ -42,7 +43,7 @@ public class BasicTestdriverLogger implements TestdriverLogger {
     /**
      * Prints all the logs.
      */
-    public void write() {
+    public synchronized void write() {
         for (LogEntry entry: entries) {
             logger.log(Level.FINE, entry.getEntryAsString());
         }
