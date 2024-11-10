@@ -61,8 +61,8 @@ public class TestdriverManager {
      */
     public synchronized void destroyDriver(String method) {
         TestdriverLogger logger = getTestEssential(method).getLogger();
-        logger.write();
         TestdriverReporter.addLogger(logger);
+        logger.write();
         testEssentials.remove(method);
     }
 
