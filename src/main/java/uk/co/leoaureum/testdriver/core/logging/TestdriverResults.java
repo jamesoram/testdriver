@@ -30,6 +30,7 @@ public class TestdriverResults {
     }
 
     public boolean isFailed(String method) {
+        // TODO refactor this mess
         String id = methodIds.get(method);
         for (ISuite suite : suites) {
             for (ITestNGMethod tnMethod : suite.getAllMethods()) {
@@ -41,7 +42,6 @@ public class TestdriverResults {
                                 return true;
                             }
                         }
-
                     }
                 }
             }

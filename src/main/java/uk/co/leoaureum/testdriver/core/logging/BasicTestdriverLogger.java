@@ -44,8 +44,12 @@ public class BasicTestdriverLogger implements TestdriverLogger {
      * Prints all the logs.
      */
     public synchronized void write() {
-        for (LogEntry entry : entries) {
-            logger.log(Level.FINE, entry.getEntryAsString());
+        try {
+            for (LogEntry entry : entries) {
+                logger.log(Level.FINE, entry.getEntryAsString());
+            }
+        } catch (Exception e) {
+            System.err.println("Error printing logs: " + e.getMessage());
         }
     }
 
