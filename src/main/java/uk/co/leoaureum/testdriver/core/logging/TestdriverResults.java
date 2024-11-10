@@ -1,10 +1,6 @@
 package uk.co.leoaureum.testdriver.core.logging;
 
 import org.testng.ISuite;
-import org.testng.ISuiteResult;
-import org.testng.ITestNGMethod;
-import org.testng.ITestResult;
-
 import java.util.*;
 
 public class TestdriverResults {
@@ -30,24 +26,23 @@ public class TestdriverResults {
     }
 
     public boolean isFailed(String method) {
-        // TODO refactor this mess
         String id = methodIds.get(method);
-        for (ISuite suite : suites) {
-            for (ITestNGMethod tnMethod : suite.getAllMethods()) {
-                if (tnMethod.getId().equals(id) && method.contains(tnMethod.getMethodName())) {
-                    for (ISuiteResult result : suite.getResults().values()) {
-                        Set<ITestResult> testResult = result.getTestContext().getFailedTests().getResults(tnMethod);
-                        for (ITestResult result1 : testResult) {
-                            if (!result1.isSuccess()) {
-                                return true;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return false;
+
+        return suites.stream()
+                // Stream through each suite
+                .flatMap(suite -> suite.getAllMethods().stream()
+                        // Filter methods that match the id and the method name
+                        .filter(tnMethod -> tnMethod.getId().equals(id) && method.contains(tnMethod.getMethodName()))
+                        // Now flatMap to get all test results from each suite
+                        .flatMap(tnMethod -> suite.getResults().values().stream()
+                                // Flatten each result set into a stream of failed test results for this method
+                                .flatMap(result -> result.getTestContext().getFailedTests().getResults(tnMethod).stream())
+                        )
+                )
+                // Check if any failed test result is not successful
+                .anyMatch(result1 -> !result1.isSuccess());
     }
+
 
     public String getId(String method) {
         return methodIds.get(method);
