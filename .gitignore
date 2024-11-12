@@ -2,6 +2,7 @@
 **/*.iml
 **.*.class
 jte-classes/*
+jte-classes
 # build files #
 ######################
 build.properties
