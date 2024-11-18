@@ -3,11 +3,13 @@ package uk.co.leoaureum.testdriver.utils;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
+import java.util.logging.Logger;
+
 /**
  * Implementation of IRetryAnalyzer.
  */
 public class TestdriverRetry implements IRetryAnalyzer {
-
+    private final Logger logger = Logger.getLogger(TestdriverRetry.class.getName());
     private static final int MAX_RETRIES = Integer.parseInt(TestdriverConfig.getInstance().getMaxRetries());
     private final ThreadLocal<Integer> retries = new ThreadLocal<>() {
         @Override
@@ -21,11 +23,14 @@ public class TestdriverRetry implements IRetryAnalyzer {
      * @param result the test result.
      * @return true if we retry, otherwise false.
      */
+    @Override
     public boolean retry(ITestResult result) {
         if (retries.get() < MAX_RETRIES) {
             retries.set(retries.get() + 1);
+            logger.info("Retrying test " + result.getTestName());
             return true;
         } else {
+            logger.info("Maximum amount of retries reached for test " + result.getTestName());
             retries.set(0);
             return false;
         }
