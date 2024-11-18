@@ -24,8 +24,6 @@ import java.time.Duration;
  * TestNG listener to create and destroy drivers before and after the tests are run.
  */
 public class TestdriverListener implements IInvokedMethodListener {
-
-    private static final int TIMEOUT = Integer.parseInt(TestdriverConfig.getInstance().getGlobalTimeoutInMillis());
     private static final String MAX_WAIT = TestdriverConfig.getInstance().getMaxImplicitWaitInSeconds();
     private final TestdriverManager testdriverManager = new TestdriverManager();
 
@@ -36,7 +34,6 @@ public class TestdriverListener implements IInvokedMethodListener {
      */
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
         method.getTestMethod().setRetryAnalyzerClass(TestdriverRetry.class);
-        method.getTestMethod().setTimeOut(TIMEOUT);
         String methodName = TestdriverManager.generateKey(method.getTestMethod().getMethodName());
         TestdriverLogger logger = getLogger(methodName);
         if (method.isTestMethod()) {
