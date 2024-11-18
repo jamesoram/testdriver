@@ -1,6 +1,5 @@
 package uk.co.leoaureum.testdriver.core;
 
-import uk.co.leoaureum.testdriver.core.listeners.TestdriverAnnotationTransformer;
 import uk.co.leoaureum.testdriver.core.listeners.TestdriverListener;
 import uk.co.leoaureum.testdriver.core.logging.LogLevel;
 import uk.co.leoaureum.testdriver.core.logging.TestdriverLogger;
@@ -12,7 +11,7 @@ import uk.co.leoaureum.testdriver.utils.TestdriverReporter;
 /**
  * Base test from which all testdriver tests will inherit.
  */
-@Listeners({ TestdriverListener.class, TestdriverAnnotationTransformer.class, TestdriverReporter.class})
+@Listeners({ TestdriverListener.class, TestdriverReporter.class })
 public class BaseTestdriverTest {
 
     private final TestdriverManager testdriverManager = new TestdriverManager();

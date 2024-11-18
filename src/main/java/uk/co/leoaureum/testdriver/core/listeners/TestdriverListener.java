@@ -14,6 +14,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.IInvokedMethod;
 import org.testng.IInvokedMethodListener;
 import org.testng.ITestResult;
+import uk.co.leoaureum.testdriver.utils.TestdriverRetry;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,6 +25,7 @@ import java.time.Duration;
  */
 public class TestdriverListener implements IInvokedMethodListener {
 
+    private static final int TIMEOUT = Integer.parseInt(TestdriverConfig.getInstance().getGlobalTimeoutInMillis());
     private static final String MAX_WAIT = TestdriverConfig.getInstance().getMaxImplicitWaitInSeconds();
     private final TestdriverManager testdriverManager = new TestdriverManager();
 
@@ -33,6 +35,8 @@ public class TestdriverListener implements IInvokedMethodListener {
      * @param testResult the result of the test.
      */
     public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
+        method.getTestMethod().setRetryAnalyzerClass(TestdriverRetry.class);
+        method.getTestMethod().setTimeOut(TIMEOUT);
         String methodName = TestdriverManager.generateKey(method.getTestMethod().getMethodName());
         TestdriverLogger logger = getLogger(methodName);
         if (method.isTestMethod()) {

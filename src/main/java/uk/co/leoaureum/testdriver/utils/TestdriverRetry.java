@@ -27,10 +27,10 @@ public class TestdriverRetry implements IRetryAnalyzer {
     public boolean retry(ITestResult result) {
         if (retries.get() < MAX_RETRIES) {
             retries.set(retries.get() + 1);
-            logger.info("Retrying test " + result.getTestName());
+            logger.info("Retrying test " + result.getName());
             return true;
         } else {
-            logger.info("Maximum amount of retries reached for test " + result.getTestName());
+            logger.info("Maximum amount of retries reached for test " + result.getMethod());
             retries.set(0);
             return false;
         }
