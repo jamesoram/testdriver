@@ -9,10 +9,10 @@ import org.testng.ITestResult;
 public class TestdriverRetry implements IRetryAnalyzer {
 
     private static final int MAX_RETRIES = Integer.parseInt(TestdriverConfig.getInstance().getMaxRetries());
-    private ThreadLocal<Integer> retries = new ThreadLocal<Integer>() {
+    private final ThreadLocal<Integer> retries = new ThreadLocal<>() {
         @Override
         public synchronized Integer initialValue() {
-            return new Integer(0);
+            return 0;
         }
     };
 
