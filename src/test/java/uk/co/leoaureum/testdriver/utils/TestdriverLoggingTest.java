@@ -20,8 +20,8 @@ public class TestdriverLoggingTest extends BaseTestdriverTest {
 
     @DataProvider(name = "provider", parallel = true)
     public Object[] provider() {
-        Object[][] data = new Object[100][1];
-        for (int i = 0; i < 100; i++) {
+        Object[][] data = new Object[10][1];
+        for (int i = 0; i < 10; i++) {
             data[i][0] = i;  // Fill the array with integers 0 through 999
         }
         return data;

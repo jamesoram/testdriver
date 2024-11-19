@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 /**
  * Tests for TestdriverConfig.
  */
-public class TestdriverconfigTests {
+public class TestdriverConfigTests {
 
     @Test
     public void testConfigIsLoaded() {
