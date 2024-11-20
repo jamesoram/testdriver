@@ -6,7 +6,7 @@
 
     <groupId>uk.co.leoaureum</groupId>
     <artifactId>testdriver</artifactId>
-    <version>1.0.10</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -14,7 +14,7 @@
         <selenium.version>4.26.0</selenium.version>
         <testng.version>7.10.2</testng.version>
         <config.version>1.4.3</config.version>
-        <jte.version>3.1.13</jte.version>
+        <jte.version>3.1.15</jte.version>
         <nexus-staging.version>1.7.0</nexus-staging.version>
         <maven-source.version>3.3.1</maven-source.version>
         <maven-javadoc.version>3.11.1</maven-javadoc.version>
