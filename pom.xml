@@ -11,15 +11,15 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <selenium.version>4.29.0</selenium.version>
+        <selenium.version>4.32.0</selenium.version>
         <testng.version>7.11.0</testng.version>
         <config.version>1.4.3</config.version>
-        <jte.version>3.1.16</jte.version>
+        <jte.version>3.2.1</jte.version>
         <nexus-staging.version>1.7.0</nexus-staging.version>
         <maven-source.version>3.3.1</maven-source.version>
         <maven-javadoc.version>3.11.2</maven-javadoc.version>
         <maven-gpg.version>3.2.7</maven-gpg.version>
-        <maven-surefire.version>3.5.2</maven-surefire.version>
+        <maven-surefire.version>3.5.3</maven-surefire.version>
         <central-publishing.version>0.7.0</central-publishing.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
