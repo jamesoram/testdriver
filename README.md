@@ -9,3 +9,4 @@ To include Testdriver in your project add the following code to your pom.xml:
   <version>1.0.15</version>
 </dependency>
 ```
+This project is not affiliated with the closed-source company who copied the Testdriver name.
