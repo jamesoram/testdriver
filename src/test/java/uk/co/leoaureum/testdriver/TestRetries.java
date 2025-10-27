@@ -8,6 +8,7 @@ import org.testng.TestNG;
 import org.testng.annotations.Test;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Tests to ensure the listeners work.
  */
 public class TestRetries extends BaseTestdriverTest {

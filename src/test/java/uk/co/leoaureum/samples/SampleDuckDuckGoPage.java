@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Sample page object for Google search
  */
 public class SampleDuckDuckGoPage extends AbstractPage {

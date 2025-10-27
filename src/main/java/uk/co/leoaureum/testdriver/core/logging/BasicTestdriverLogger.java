@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Logger for testdriver tests.
  */
 public class BasicTestdriverLogger implements TestdriverLogger {

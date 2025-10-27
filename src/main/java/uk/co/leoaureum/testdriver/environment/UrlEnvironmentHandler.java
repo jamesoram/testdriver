@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Simple environment handler based on URLs.
  */
 public class UrlEnvironmentHandler implements EnvironmentHandler {

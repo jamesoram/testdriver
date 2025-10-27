@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Tests for TestdriverConfig.
  */
 public class TestdriverConfigTests {

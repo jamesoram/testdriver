@@ -5,6 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import uk.co.leoaureum.testdriver.pages.AbstractPage;
 
+/**
+ * Copyright (C) James Oram 2014-2025
+ */
 public class SampleDuckDuckGoResultsPage extends AbstractPage {
 
     @FindBy(xpath = "id('r1-0')//h2")

@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Manager class for WebDrivers.
  */
 public class TestdriverManager {

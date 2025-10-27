@@ -9,6 +9,7 @@ import org.testng.annotations.Listeners;
 import uk.co.leoaureum.testdriver.utils.TestdriverReporter;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Base test from which all testdriver tests will inherit.
  */
 @Listeners({ TestdriverListener.class, TestdriverReporter.class })

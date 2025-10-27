@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Test that should fail.
  */
 public class FailureTests extends BaseTestdriverTest {

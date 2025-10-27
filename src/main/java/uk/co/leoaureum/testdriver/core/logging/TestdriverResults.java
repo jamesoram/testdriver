@@ -3,6 +3,9 @@ package uk.co.leoaureum.testdriver.core.logging;
 import org.testng.ISuite;
 import java.util.*;
 
+/**
+ * Copyright (C) James Oram 2014-2025
+ */
 public class TestdriverResults {
 
     private final Map<String, List<LogEntry>> logs = new HashMap<>();

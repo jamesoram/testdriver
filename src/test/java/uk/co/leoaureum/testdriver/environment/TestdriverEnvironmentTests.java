@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Tests for the environment handlers.
  */
 public class TestdriverEnvironmentTests {

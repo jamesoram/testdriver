@@ -4,6 +4,7 @@ import uk.co.leoaureum.testdriver.core.logging.TestdriverLogger;
 import org.openqa.selenium.WebDriver;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Data class for the essential components of a Testdriver test.
  */
 public class TestEssential {

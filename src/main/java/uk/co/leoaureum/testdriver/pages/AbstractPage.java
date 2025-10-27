@@ -10,6 +10,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.List;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Abstract Page is a basic page representation from which all pages should inherit.
  */
 public class AbstractPage {

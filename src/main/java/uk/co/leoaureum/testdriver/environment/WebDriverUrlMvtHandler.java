@@ -3,6 +3,7 @@ package uk.co.leoaureum.testdriver.environment;
 import java.util.List;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Simple URL-based handler for multi-variate tests.
  */
 public class WebDriverUrlMvtHandler implements MvtHandler {

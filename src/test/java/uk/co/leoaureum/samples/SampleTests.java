@@ -7,6 +7,7 @@ import uk.co.leoaureum.testdriver.core.logging.LogLevel;
 
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Smoke test.
  */
 public class SampleTests extends BaseTestdriverTest {

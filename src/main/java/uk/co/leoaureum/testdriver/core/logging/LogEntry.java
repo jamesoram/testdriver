@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Entry for the Testdriver logger.
  */
 public class LogEntry {

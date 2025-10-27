@@ -3,6 +3,7 @@ package uk.co.leoaureum.testdriver.core.logging;
 import java.util.List;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Interface for all Testdriver loggers.
  */
 public interface TestdriverLogger {

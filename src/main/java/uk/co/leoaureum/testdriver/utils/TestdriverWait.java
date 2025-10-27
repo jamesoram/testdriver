@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Class for wait conditions.
  */
 public class TestdriverWait extends WebDriverWait {
@@ -69,7 +70,7 @@ public class TestdriverWait extends WebDriverWait {
     public void forElementToNotBeClickable(WebElement element) {
         until(not(ExpectedConditions.elementToBeClickable(element)));
     }
-    
+
     private ExpectedCondition<Boolean> not(final ExpectedCondition<?> toInvert) {
         return driver -> {
             try {

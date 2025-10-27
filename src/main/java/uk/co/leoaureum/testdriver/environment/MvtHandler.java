@@ -3,6 +3,7 @@ package uk.co.leoaureum.testdriver.environment;
 import java.util.List;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Interface for dealing with multi-variate tests.
  */
 public interface MvtHandler {

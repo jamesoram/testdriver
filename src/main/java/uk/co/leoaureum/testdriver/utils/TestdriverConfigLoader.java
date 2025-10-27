@@ -4,6 +4,7 @@ import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Class for loading and holding the framework configuration.
  */
 public class TestdriverConfigLoader {

@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Wrapper to log WebDriver events.
  */
 public class EventLoggingWebDriver implements WebDriverListener {

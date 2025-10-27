@@ -6,6 +6,7 @@ import org.testng.ITestResult;
 import java.util.logging.Logger;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Implementation of IRetryAnalyzer.
  */
 public class TestdriverRetry implements IRetryAnalyzer {

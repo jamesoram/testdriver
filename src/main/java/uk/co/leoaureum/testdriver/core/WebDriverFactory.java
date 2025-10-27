@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Factory for WebDrivers.
  */
 public class WebDriverFactory {

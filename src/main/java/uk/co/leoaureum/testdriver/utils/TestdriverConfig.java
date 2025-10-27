@@ -1,6 +1,7 @@
 package uk.co.leoaureum.testdriver.utils;
 
 /**
+ * Copyright (C) James Oram 2014-2025
  * Class to hold configuration for testdriver.
  */
 public class TestdriverConfig {

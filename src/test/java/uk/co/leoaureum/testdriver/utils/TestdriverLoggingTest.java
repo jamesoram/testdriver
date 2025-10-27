@@ -6,6 +6,9 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import uk.co.leoaureum.testdriver.core.BaseTestdriverTest;
 
+/**
+ * Copyright (C) James Oram 2014-2025
+ */
 public class TestdriverLoggingTest extends BaseTestdriverTest {
 
     @Test(dataProvider = "provider")
